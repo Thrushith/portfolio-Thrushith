@@ -1,0 +1,205 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Use Google Font */
+    background-color: #070708; /* Light background color */
+    color: #0a0707; /* Dark text color */
+}
+
+Navbar
+.navbar {
+    background: #4a90e2; /* Solid background color */
+    padding: 15px 0; /* Padding for spacing */
+    border-radius: 20px 20px 20px 20px; /* Rounded corners */
+    text-align: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 120px; /* Max width for the container */
+    margin: 110 auto; /* Center the container */
+}
+
+.nav-links {
+    list-style: none; /* Remove default list styling */
+    display: flex; /* Use flexbox for layout */
+    justify-content:right; /* Center the links */
+    margin: 0; /* Remove default margin */
+    padding: 10px; /* Remove default padding */
+}
+
+.nav-links li {
+    margin: 0 20px; /* Space between links */
+}
+
+.nav-links a {
+    text-decoration: none; /* Remove underline */
+    color: white; /* Text color */
+    font-size: 1.2em; /* Font size */
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font for the links */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth color transition */
+}
+
+.nav-links a:hover {
+    color: #ffd700; /* Change color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Adding a hover effect with a pseudo-element */
+.nav-links li::after {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute; /* Position absolutely within the li */
+    left: 50%; /* Center horizontally */
+    bottom: -5px; /* Position below the link */
+    width: 0; /* Initial width */
+    height: 3px; /* Height of the underline */
+    background: #ffd700; /* Color of the underline */
+    transition: width 0.3s ease, left 0.3s ease; /* Smooth transition */
+}
+
+.nav-links li:hover::after {
+    width: 100%; /* Full width on hover */
+    left: 0; /* Align to the left */
+}
+
+/* About Section */
+#about {
+    padding: 50px 0;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: rgb(8, 5, 5); /* Change text color to white for better contrast */
+    font-size: 1.2em; /* Slightly smaller font size for better readability */
+    text-align: center; /* Center align text */
+}
+
+.my-name {
+    font-family: 'Montserrat', sans-serif; /* Use a different Google Font for the name */
+    font-size: 2em; /* Increase font size for the name */
+    margin: 10px 0; /* Space around the name */
+    color: #ffd700; /* Gold color for the name */
+}
+
+.about-content {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    margin-top: 20px; /* Add some space above */
+}
+
+#about p {
+    max-width: 800px; /* Limit the width of the paragraph */
+    line-height: 1.6; /* Increase line height for better readability */
+    margin: 0 auto; /* Center align paragraph */
+}
+
+/* Project Section */
+#projects .card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+#projects .card:hover {
+    transform: translateY(-10px);
+}
+
+/* Contact Form */
+#contact form .form-control {
+    border-radius: 10px;
+}
+
+.btn-primary {
+    background-color: #6e8efb;
+    border: none;
+    border-radius: 10px;
+}
+
+footer {
+    margin-top: 50px;
+    border-radius: 20px 20px 0 0;
+    background: #343a40;
+    color: #ccc;
+}
+
+/* Profile Image */
+.profile-img {
+    width: 50px;  /* Resize to make it smaller */
+    height: 50px;
+    border-radius: 50%;  /* Circular shape */
+    margin-right: 10px;  /* Spacing between image and name */
+    object-fit:fill;   /* Ensures image scales without distortion */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#skills {
+    /* position: relative; */
+    /* overflow: hidden; */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: em;
+    /* background-color: #f8f9fa; Light background for contrast */
+}
+
+.skills-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.skills-scroll {
+    display: inline-flex;
+    animation: scroll 15s linear infinite;
+}
+
+.skill-icon {
+    width: 100px;
+    height: auto;
+    margin: 0 60px; /* Increase gap between icons */
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.profile-container {
+    position: relative; /* Position relative to allow absolute positioning of child elements */
+    display: inline-block; /* Align the container inline */
+}
+
+.about-img {
+    width: 150px; /* Set a fixed width for the profile image */
+    height: 150px; /* Set a fixed height for the profile image */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+    margin-bottom: 20px; /* Space below the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    transition: transform 0.5s ease; /* Smooth transition for rotation */
+}
+
+.linkedin-logo {
+    position: absolute; /* Position absolutely within the container */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) rotateY(180deg); /* Center and rotate */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease, transform 0.5s ease; /* Smooth transition for opacity and transform */
+}
+
+.profile-container:hover .about-img {
+    transform: rotateY(180deg); /* Rotate the profile image on hover */
+}
+
+.profile-container:hover .linkedin-logo {
+    opacity: 1; /* Show the LinkedIn logo on hover */
+    transform: translate(-50%, -50%) rotateY(0deg); /* Reset rotation to show the logo */
+}
+
+.linkedin-icon {
+    width: 50px; /* Set width for LinkedIn logo */
+    height: 50px; /* Set height for LinkedIn logo */
+}
+
+
