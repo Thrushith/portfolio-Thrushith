@@ -201,5 +201,29 @@ footer {
     width: 50px; /* Set width for LinkedIn logo */
     height: 50px; /* Set height for LinkedIn logo */
 }
+/* Base styles for social links */
+.social-link {
+    padding: 10px;  /* Reduced from 15px */
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;    /* Reduced from 60px */
+    height: 50px;   /* Reduced from 60px */
+}
 
+.social-link:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 0, 0, 0.05);
+}
 
+/* Icon sizes */
+.social-link i {
+    font-size: 24px;  /* Reduced from 24px */
+}
+
+.social-link img {
+    width: 24px;    /* Reduced from 24px */
+    height: 24px;   /* Reduced from 24px */
+}
