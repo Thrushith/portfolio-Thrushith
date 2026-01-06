@@ -360,6 +360,92 @@ section {
     transform: translateY(0);
 }
 
+
+/* Contact Section Updates */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2rem;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 20px;
+    border: var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-gradient);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.social-links-left {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     h1 {
@@ -373,5 +459,17 @@ section {
     .hero-profile-container {
         width: 140px;
         height: 140px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .contact-info {
+        text-align: center;
+    }
+    
+    .social-links-left {
+        justify-content: center;
     }
 }
