@@ -1,242 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Portfolio Thrushith</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Linking CSS file -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Bootstrap CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/31149d48b0.js" crossorigin="anonymous"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrushith Yelamanchili | Data Scientist</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/31149d48b0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Navbar -->
-    <!-- <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#projects">PROJECTS</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
-    </nav> -->
 
-    <!-- Main Content Sections -->
-    <section id="about" class="container my-5 text-center">
-        <h1>Welcome to My Portfolio</h1>
-        <div class="about-content">
-            <div class="profile-container">
-                <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" rel="noopener noreferrer">
-                    <img src="images/1694539386859.jpeg" alt="Profile Image" class="about-img">
-                    <div class="linkedin-logo">
-                        <img src="images/bnQucG5n.png" alt="LinkedIn Logo" class="linkedin-icon">
-                    </div>
-                </a>
-                <h2 class="my-name">Thrushith Yelamanchili</h2>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" style="font-weight: 700; font-size: 1.5rem;">Thrushith.</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="hero">
+        <div class="hero-content">
+            <div class="hero-profile-container">
+                <img src="images/1694539386859.jpeg" alt="Thrushith Yelamanchili" class="hero-img">
             </div>
-            <p>I am a passionate Data Scientist dedicated to transforming data into actionable insights. With a strong foundation in machine learning, deep learning, and SQL, I thrive on solving complex problems and driving innovation. Currently, I am pursuing a Master's in Data Science at the University of Massachusetts Dartmouth, where I am honing my skills and expanding my knowledge.</p>
+            <h1>Thrushith Yelamanchili</h1>
+            <p>Data Scientist | Machine Learning Engineer | Innovator</p>
+            <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary);">
+                Passionate about transforming data into actionable insights. With a strong foundation in machine learning, deep learning, and SQL, I thrive on solving complex problems and driving innovation.
+            </p>
+            <div class="social-links" style="justify-content: center; margin-top: 2rem;">
+                <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/Thrushith" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+                <a href="mailto:thrushithy@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+            </div>
         </div>
     </section>
 
-    <section id="skills" class="container my-5 text-center">
-        <h2>Skills</h2>
-        <div class="skills-container">
-            <div class="skills-scroll">
-                <div class="skill-wrapper">
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="reveal">
+            <h2>Technical Arsenal</h2>
+            <div class="skills-grid">
+                <!-- Skill Items -->
+                <div class="skill-card">
                     <img src="images/5848152fcef1014c0b5e4967.png" alt="Python" class="skill-icon">
-                    <span class="tooltip">Python</span>
+                    <span class="skill-name">Python</span>
                 </div>
-                <div class="skill-wrapper">
-                    <img src="images/Machine-Learning-PNG-Image-File.png" alt="Macine Learning" class="skill-icon">
-                    <span class="tooltip">Machine learning</span>
+                <div class="skill-card">
+                    <img src="images/Machine-Learning-PNG-Image-File.png" alt="Machine Learning" class="skill-icon">
+                    <span class="skill-name">Machine Learning</span>
                 </div>
-                <div class="skill-wrapper">
+                <div class="skill-card">
                     <img src="images/2103787.png" alt="Deep Learning" class="skill-icon">
-                    <span class="tooltip">Deep Learning</span>
+                    <span class="skill-name">Deep Learning</span>
                 </div>
-                <div class="skill-wrapper">
+                <div class="skill-card">
                     <img src="images/R.png" alt="SQL" class="skill-icon">
-                    <span class="tooltip">MySQL</span>
+                    <span class="skill-name">SQL</span>
                 </div>
-                <div class="skill-wrapper">
-                    <img src="images/63583-visualization-data-illustration-png-image-high-quality.png" alt="Data visualization" class="skill-icon">
-                    <span class="tooltip">Data Visualization</span>
+                <div class="skill-card">
+                    <img src="images/63583-visualization-data-illustration-png-image-high-quality.png" alt="Data Visualization" class="skill-icon">
+                    <span class="skill-name">Data Viz</span>
                 </div>
-                <div class="skill-wrapper">
-                    <img src="images/r-logo-outline-1.png" alt="R language" class="skill-icon">
-                    <span class="tooltip">R language</span>
+                <div class="skill-card">
+                    <img src="images/r-logo-outline-1.png" alt="R Language" class="skill-icon">
+                    <span class="skill-name">R Language</span>
                 </div>
-                <div class="skill-wrapper">
+                <div class="skill-card">
                     <img src="images/HTML5_logo_and_wordmark.svg.png" alt="HTML" class="skill-icon">
-                    <span class="tooltip">HTML</span>
+                    <span class="skill-name">HTML5</span>
                 </div>
-                <div class="skill-wrapper">
+                <div class="skill-card">
                     <img src="images/css-logo-png-png-wallpaper-download-79166-768x768.png" alt="CSS" class="skill-icon">
-                    <span class="tooltip">CSS</span>
+                    <span class="skill-name">CSS3</span>
                 </div>
-                <div class="skill-wrapper">
-                    <img src="images/logo-javascript-icon-512.png" alt="JS" class="skill-icon">
-                    <span class="tooltip">JS</span>
+                <div class="skill-card">
+                    <img src="images/logo-javascript-icon-512.png" alt="JavaScript" class="skill-icon">
+                    <span class="skill-name">JavaScript</span>
                 </div>
-                <!-- Duplicate skills to create a seamless effect -->
-                <div class="skill-wrapper">
-                    <img src="images/5848152fcef1014c0b5e4967.png" alt="Python" class="skill-icon">
-                    <span class="tooltip">Python</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/Machine-Learning-PNG-Image-File.png" alt="Macine Learning" class="skill-icon">
-                    <span class="tooltip">Machine learning</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/2103787.png" alt="Deep Learning" class="skill-icon">
-                    <span class="tooltip">Deep Learning</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/R.png" alt="SQL" class="skill-icon">
-                    <span class="tooltip">MySQL</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/63583-visualization-data-illustration-png-image-high-quality.png" alt="Data visualization" class="skill-icon">
-                    <span class="tooltip">Data Visualization</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/r-logo-outline-1.png" alt="R language" class="skill-icon">
-                    <span class="tooltip">R language</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/HTML5_logo_and_wordmark.svg.png" alt="HTML" class="skill-icon">
-                    <span class="tooltip">HTML</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/css-logo-png-png-wallpaper-download-79166-768x768.png" alt="CSS" class="skill-icon">
-                    <span class="tooltip">CSS</span>
-                </div>
-                <div class="skill-wrapper">
-                    <img src="images/logo-javascript-icon-512.png" alt="JS" class="skill-icon">
-                    <span class="tooltip">JS</span>
-                </div>
-                
             </div>
         </div>
     </section>
-    
-    
-    
 
-    <section id="projects" class="container my-5 text-center">
-        <h2>Projects</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <a href="https://github.com/Thrushith/grayscale-pic-color-GAN" target="_blank" class="text-decoration-none">
-                    <div class="card text-dark">
-                        <img src="images/Untitled design.png" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>GREY-SCALE</b> picture conversion using <b>GAN</b></h5>
-                            <p class="card-text"><i>The goal is to colorize black-and-white images using a highly efficient generative adversarial network. Unlike the less accurate OpenCV-based model, my approach delivers superior color results.</i></p>
-                        </div>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="reveal">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <a href="https://github.com/Thrushith/grayscale-pic-color-GAN" target="_blank" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/Untitled design.png" alt="GAN Project" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Greyscale to Color GAN</h3>
+                        <p class="project-desc">Advanced Generative Adversarial Network that colorizes black-and-white images with superior accuracy compared to traditional OpenCV methods.</p>
+                        <span class="highlight">View Source <i class="fa-solid fa-arrow-right" style="font-size: 0.8em;"></i></span>
                     </div>
                 </a>
-            </div>
-            <div class="col-md-4">
-                <a href="https://github.com/Thrushith/basic-hand-gesture-" target="_blank" class="text-decoration-none">
-                    <div class="card text-dark">
-                        <img src="images/asl-alphabets-hand-gesture-free-vector.jpg" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Hand <b>Gesture</b> recognition</h5>
-                            <p class="card-text"><i>This is an ML project which can identify the hand gesture and provide the accurate translation for it. This is generally used for communication with speech-impaired people.</i></p>
-                        </div>
+
+                <!-- Project 2 -->
+                <a href="https://github.com/Thrushith/basic-hand-gesture-" target="_blank" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/asl-alphabets-hand-gesture-free-vector.jpg" alt="Gesture Recognition" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Hand Gesture Recognition</h3>
+                        <p class="project-desc">Machine Learning model for identifying sign language gestures in real-time. Designed to assist communication for the speech-impaired.</p>
+                        <span class="highlight">View Source <i class="fa-solid fa-arrow-right" style="font-size: 0.8em;"></i></span>
                     </div>
                 </a>
-            </div>
-            <div class="col-md-4">
-                <a href="https://github.com/Thrushith/PTP-chat-application" target="_blank" class="text-decoration-none">
-                    <div class="card text-dark">
-                        <img src="images/maxresdefault.jpg" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title"><b>PTP</b> Chat application</h5>
-                            <p class="card-text"><i>This is a very effective and efficient chat application that was built using Python Django. Designed and implemented the application with a focus on data security, ensuring end-to-end encryption and zero data breaches. User data remains confidential throughout the communication process.</i></p>
-                        </div>
+
+                <!-- Project 3 -->
+                <a href="https://github.com/Thrushith/PTP-chat-application" target="_blank" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="images/maxresdefault.jpg" alt="Chat Application" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Secure P2P Chat</h3>
+                        <p class="project-desc">End-to-end encrypted chat application built with Python Django. Focuses on zero-knowledge architecture and absolute data privacy.</p>
+                        <span class="highlight">View Source <i class="fa-solid fa-arrow-right" style="font-size: 0.8em;"></i></span>
                     </div>
                 </a>
             </div>
         </div>
     </section>
-    
-    
 
-    <section id="contact" class="container my-5 text-center">
-        <h2>Contact</h2>
-        <div class="social-links-container mt-4">
-            <div class="d-flex justify-content-center gap-4">
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/thrushithyelamanchili/" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="social-link linkedin">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <!-- Alternative Icons -->
-                    <img src="images/bHMucG5n.png" alt="LinkedIn">
-                    <i class="alternate-icon-class"></i>
-            
+    <!-- Contact Section -->
+    <section id="contact" style="text-align: center; margin-bottom: 5rem;">
+        <div class="reveal">
+            <h2>Let's Connect</h2>
+            <p style="max-width: 500px; margin: 0 auto 2rem;">
+                Looking for new opportunities or just want to chat about data science? Feel free to reach out.
+            </p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-linkedin-in"></i>
                 </a>
-                
-                <!-- GitHub -->
-                <a href="https://github.com/Thrushith" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="social-link github">
+                <a href="https://github.com/Thrushith" target="_blank" class="social-btn">
                     <i class="fa-brands fa-github"></i>
-                    <!-- Alternative Icons -->
-                    <img src="images/cG5n.png" alt="LinkedIn">
-                    <i class="alternate-icon-class"></i>
                 </a>
-                
-                <!-- Discord -->
-                <a href="https://discord.com/users/your-discord-id" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="social-link discord">
+                <a href="https://discord.com/" target="_blank" class="social-btn">
                     <i class="fa-brands fa-discord"></i>
-                    <!-- Alternative Icons -->
-                    <img src="images/cG5n1.png" alt="LinkedIn">
-                    <i class="alternate-icon-class"></i>
                 </a>
-                
-                <!-- Reddit -->
-                <a href="https://www.reddit.com/u/Lieutenant-Pangolin/s/RJi8G2G9Nl" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="social-link reddit">
+                <a href="https://www.reddit.com/u/Lieutenant-Pangolin/" target="_blank" class="social-btn">
                     <i class="fa-brands fa-reddit"></i>
-                    <!-- Alternative Icons -->
-                    <img src="images/LXBuZy5wbmc.png" alt="LinkedIn">
-                    <i class="alternate-icon-class"></i>
                 </a>
-                
-                <!-- Email -->
-                <a href="mailto:thrushithy@gmail.com" 
-                   class="social-link email">
+                <a href="mailto:thrushithy@gmail.com" class="social-btn">
                     <i class="fa-solid fa-envelope"></i>
-                    <!-- Alternative Icons -->
-                    <img src="images/YWlsLTE0LnBuZw.png " alt="LinkedIn">
-                    <i class="alternate-icon-class"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-white text-center py-3">
-        &copy; 2024 Thrushith's Portfolio. All Rights Reserved.
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: var(--glass-border); background: var(--nav-bg);">
+        <p style="margin: 0; font-size: 0.9rem;">&copy; 2024 Thrushith Yelamanchili. Crafted with <i class="fa-solid fa-code" style="color: var(--accent-primary);"></i> and <i class="fa-solid fa-heart" style="color: var(--accent-secondary);"></i>.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script/script.js"></script>
 </body>
 </html>

@@ -1,49 +1,42 @@
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("JavaScript loaded and ready to go!");
-    // Smooth scrolling for navigation links
-    const links = document.querySelectorAll('a.nav-link');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            document.querySelector(targetId).scrollIntoView({
+// Smooth Scrolling for Anchor Links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
                 behavior: 'smooth'
             });
-        });
+        }
     });
 });
 
-function handleSubmit(event) {
-    event.preventDefault(); // Prevent the form from submitting the default way
+// Scroll Reveal Animation
+const revealElements = document.querySelectorAll('.reveal');
 
-    // Get form values
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-
-    // Send data to the server
-    fetch('https://your-pythonanywhere-username.pythonanywhere.com/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-            'name': name,
-            'email': email,
-            'message': message
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            alert('Thank you for your message! We will contact you soon.');
-            document.getElementById("contactForm").reset(); // Reset the form
-        } else {
-            alert('There was an error sending your message. Please try again later.');
+const revealOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Optional: Stop observing once revealed
+            // observer.unobserve(entry.target);
         }
-    })
-    . catch(error => {
-        console.error('Error:', error);
-        alert('There was an error sending your message. Please try again later.');
     });
-}
+}, {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+});
+
+revealElements.forEach(element => {
+    revealOnScroll.observe(element);
+});
+
+// Dynamic Navbar Transparency
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.5)';
+    } else {
+        navbar.style.boxShadow = 'none';
+    }
+});
