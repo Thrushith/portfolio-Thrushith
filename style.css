@@ -311,10 +311,17 @@ section {
 }
 
 .skill-icon {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+/* Specific adjustments for font icons */
+i.skill-icon {
+    width: auto;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
 }
 
 .skill-name {
