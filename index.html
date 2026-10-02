@@ -4,389 +4,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thrushith Yelamanchili | Data Scientist</title>
+    <title>Thrushith Yelamanchili | ML Engineer</title>
+    <meta name="description"
+        content="Thrushith Yelamanchili, AI and machine learning engineer working on vision-language-action models, LLMs, robot learning and computer vision.">
+    <meta name="theme-color" content="#0e0d0b">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0d0b'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23f2a541'%3Ety%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="grain" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" style="font-weight: 700; font-size: 1.5rem;">Thrushith.</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <!-- Top bar -->
+    <header class="topbar">
+        <a href="#top" class="mark" aria-label="Back to top">ty<span>.</span></a>
+        <nav class="nav" id="nav">
+            <a href="#about" aria-label="About"><span>01</span>About</a>
+            <a href="#experience" aria-label="Experience"><span>02</span>Experience</a>
+            <a href="#projects" aria-label="Projects"><span>03</span>Projects</a>
+            <a href="#toolkit" aria-label="Toolkit"><span>04</span>Toolkit</a>
+            <a href="#education" aria-label="Education"><span>05</span>Education</a>
+            <a href="#contact" aria-label="Contact"><span>06</span>Contact</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" id="top">
+            <p class="prompt"><span class="caret">&gt;</span> ai <i>/</i> machine learning <i>/</i> robot learning <i>/</i>
+                llms<span class="cursor">_</span></p>
+
+            <h1 class="hero-name">
+                <span class="line">Thrushith</span>
+                <span class="line italic">Yelamanchili</span>
+            </h1>
+
+            <div class="hero-foot">
+                <p class="hero-lede">
+                    AI and machine learning are what I care about most. Lately that means teaching a robot arm
+                    to pick things up from demos I recorded myself, then checking honestly whether the model
+                    got any better.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-solid">See my work <i class="fa-solid fa-arrow-down"></i></a>
+                    <a href="#contact" class="btn btn-ghost">Say hello</a>
+                </div>
+            </div>
+
+            <ul class="hero-meta">
+                <li><span>Research</span>VLA models for robot manipulation at UMass Dartmouth</li>
+                <li><span>Degree</span>M.S. Data Science, GPA 3.94</li>
+                <li><span>Status</span>U.S. work authorized.
+                    <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank"
+                        rel="noopener">LinkedIn</a>,
+                    <a href="https://github.com/Thrushith" target="_blank" rel="noopener">GitHub</a>
+                </li>
             </ul>
-        </div>
-    </nav>
+        </section>
 
-    <!-- Hero Section -->
-    <section id="about" class="hero">
-        <div class="hero-content">
-            <div class="hero-profile-container">
-                <img src="images/1694539386859.jpeg" alt="Thrushith Yelamanchili" class="hero-img">
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="section-head reveal">
+                <span class="index">// 01</span>
+                <h2>About</h2>
             </div>
-            <h1>Thrushith Yelamanchili</h1>
-            <p>Data Science Researcher | ERC-3643 | Web3.o</p>
-            
-            <p style="max-width: 800px; margin: 0 auto; color: var(--text-secondary); margin-bottom: 2rem;">
-                M.S. Data Science candidate (GPA 3.95) with experience building secure data-driven platforms and machine
-                learning pipelines.
-                Currently a <span class="highlight">Research Assistant</span> developing permissioned security-token
-                platforms under
-                <a href="https://www.umassd.edu/directory/ljiao/" target="_blank" class="text-link">Professor Long
-                    Jiao</a> at UMass Dartmouth.
-            </p>
-            <div class="social-links" style="justify-content: center; margin-top: 1rem;">
-                <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" class="social-btn"><i
-                        class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/Thrushith" target="_blank" class="social-btn"><i
-                        class="fa-brands fa-github"></i></a>
-                <a href="mailto:thrushithy@gmail.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="reveal">
-            <h2>Experience</h2>
-            <div class="timeline">
+            <div class="about reveal">
+                <p class="about-big">
+                    I like models that actually <em>do something</em>. Pick up a cup, color an old photo, trace a
+                    building from a satellite image.
+                </p>
 
-                <!-- Role 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Dec 2025 – May 2026</div>
-                        <h3>Research Assistant</h3>
-                        <h4>University of Massachusetts Dartmouth</h4>
-                        <ul>
-                            <li>Built a full-stack ERC-3643 real-estate tokenization platform with KYC gating and
-                                role-based access.</li>
-                            <li>Developed Node.js/Express + MongoDB REST services, adding audit/history tracking and API
-                                hardening (Helmet/CORS).</li>
-                            <li>Designed a data layer combining MongoDB for transactions and AWS S3 for unstructured
-                                documents.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Role 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Sep 2025 – May 2026</div>
-                        <h3>Graduate Admissions Assistant</h3>
-                        <h4>University of Massachusetts Dartmouth</h4>
-                        <ul>
-                            <li>Performed data analysis on undergraduate admissions data using Excel and Tableau to
-                                deliver insights on funnel performance.</li>
-                            <li>Built dashboards and automated reports to support recruitment operations and improve
-                                decision-making.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Role 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Dec 2023 – Mar 2024</div>
-                        <h3>R&D Intern (ML + GIS)</h3>
-                        <h4>Clove Technologies</h4>
-                        <ul>
-                            <li>Engineered a machine learning pipeline within GIS to automate building footprint
-                                extraction, accelerating the process by 60%.</li>
-                            <li>Reduced manual review time by 20+ hours per week by integrating Solve 3D software for
-                                enhanced spatial analysis.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Role 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Oct 2022 – Jan 2023</div>
-                        <h3>Blockchain/Web 3.0 Development Intern</h3>
-                        <h4>Adigos Pvt. Ltd.</h4>
-                        <ul>
-                            <li>Integrated Ethereum Blockchain with Python using Web3.0. Contributed to research
-                                initiatives related to scalability solutions.</li>
-                            <li>Developed and tested smart contract functionalities to ensure secure and efficient
-                                blockchain transactions.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education">
-        <div class="reveal">
-            <h2>Education</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Expected May 2026</div>
-                        <h3>Master's in Data Science</h3>
-                        <h4>University of Massachusetts Dartmouth</h4>
-                        <p style="margin-bottom: 0;">GPA: 3.95</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Fall 2024</div>
-                        <h3>Bachelor's in AI & Data Science</h3>
-                        <h4>Vignan's Institute of Information Technology</h4>
-                        <p style="margin-bottom: 0;">GPA: 3.5</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Activities Section -->
-    <section id="activities">
-        <div class="reveal">
-            <h2>Activities</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Spring 2024 – Present</div>
-                        <h3>Social Chair</h3>
-                        <h4>Tech Talks Club, UMass Dartmouth</h4>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="date-badge">Fall 2022 – Fall 2024</div>
-                        <h3>Joint Secretary</h3>
-                        <h4>OWASP Club, Vignan's Institute Of Information Technology</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="reveal">
-            <h2>Technical Arsenal</h2>
-            <div class="skills-grid">
-                <!-- Data Science & ML -->
-                <div class="skill-card">
-                    <i class="devicon-python-plain colored skill-icon"></i>
-                    <span class="skill-name">Python</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-r-plain colored skill-icon"></i>
-                    <span class="skill-name">R</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-pandas-plain colored skill-icon"></i>
-                    <span class="skill-name">Pandas</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-numpy-plain colored skill-icon"></i>
-                    <span class="skill-name">NumPy</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-scikitlearn-plain colored skill-icon"></i>
-                    <span class="skill-name">Scikit-learn</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-pytorch-plain colored skill-icon"></i>
-                    <span class="skill-name">PyTorch</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-opencv-plain colored skill-icon"></i>
-                    <span class="skill-name">OpenCV</span>
-                </div>
-
-                <!-- Backend & DB -->
-                <div class="skill-card">
-                    <i class="devicon-nodejs-plain colored skill-icon"></i>
-                    <span class="skill-name">Node.js</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-express-original skill-icon" style="color: white;"></i>
-                    <span class="skill-name">Express</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-mongodb-plain colored skill-icon"></i>
-                    <span class="skill-name">MongoDB</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-sqlite-plain colored skill-icon"></i>
-                    <span class="skill-name">SQLite</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-flask-original skill-icon" style="color: white;"></i>
-                    <span class="skill-name">Flask</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-django-plain colored skill-icon"></i>
-                    <span class="skill-name">Django</span>
-                </div>
-
-                <!-- Web & Languages -->
-                <div class="skill-card">
-                    <i class="devicon-javascript-plain colored skill-icon"></i>
-                    <span class="skill-name">JavaScript</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-html5-plain colored skill-icon"></i>
-                    <span class="skill-name">HTML5</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-css3-plain colored skill-icon"></i>
-                    <span class="skill-name">CSS3</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-c-plain colored skill-icon"></i>
-                    <span class="skill-name">C</span>
-                </div>
-
-                <!-- Tools -->
-                <div class="skill-card">
-                    <i class="devicon-git-plain colored skill-icon"></i>
-                    <span class="skill-name">Git</span>
-                </div>
-                <div class="skill-card">
-                    <i class="devicon-amazonwebservices-plain-wordmark colored skill-icon"></i>
-                    <span class="skill-name">AWS</span>
-                </div>
-                <div class="skill-card">
-                    <i class="fa-solid fa-chart-simple skill-icon" style="color: #E97627;"></i>
-                    <span class="skill-name">Tableau</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="reveal">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <a href="https://github.com/Thrushith/grayscale-pic-color-GAN" target="_blank" class="project-card">
-                    <div class="project-img-wrapper">
-                        <img src="images/Untitled design.png" alt="GAN Project" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Greyscale to Color GAN</h3>
-                        <p class="project-desc">Advanced Generative Adversarial Network that colorizes black-and-white
-                            images with superior accuracy compared to traditional OpenCV methods.</p>
-                        <span class="highlight">View Source <i class="fa-solid fa-arrow-right"
-                                style="font-size: 0.8em;"></i></span>
-                    </div>
-                </a>
-
-                <!-- Project 2 -->
-                <a href="https://github.com/Thrushith/basic-hand-gesture-" target="_blank" class="project-card">
-                    <div class="project-img-wrapper">
-                        <img src="images/asl-alphabets-hand-gesture-free-vector.jpg" alt="Gesture Recognition"
-                            class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Hand Gesture Recognition</h3>
-                        <p class="project-desc">Machine Learning model for identifying sign language gestures in
-                            real-time. Designed to assist communication for the speech-impaired.</p>
-                        <span class="highlight">View Source <i class="fa-solid fa-arrow-right"
-                                style="font-size: 0.8em;"></i></span>
-                    </div>
-                </a>
-
-                <!-- Project 3 -->
-                <a href="https://github.com/Thrushith/PTP-chat-application" target="_blank" class="project-card">
-                    <div class="project-img-wrapper">
-                        <img src="images/maxresdefault.jpg" alt="Chat Application" class="project-img">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Secure P2P Chat</h3>
-                        <p class="project-desc">End-to-end encrypted chat application built with Python Django. Focuses
-                            on zero-knowledge architecture and absolute data privacy.</p>
-                        <span class="highlight">View Source <i class="fa-solid fa-arrow-right"
-                                style="font-size: 0.8em;"></i></span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" style="margin-bottom: 5rem;">
-        <div class="reveal">
-            <h2>Let's Connect</h2>
-            <div class="contact-container">
-                <!-- Text on the left/top -->
-                <div class="contact-info">
+                <div class="about-copy">
                     <p>
-                        Looking for new opportunities or just want to chat about data science?
-                        Feel free to drop me a message.
+                        My degree says data science, but my heart is in AI and machine learning. That's where I
+                        spend my time, and it's the kind of work I want to keep doing.
                     </p>
-                    <div class="social-links-left">
-                        <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank"
-                            class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Thrushith" target="_blank" class="social-btn"><i
-                                class="fa-brands fa-github"></i></a>
+                    <p>
+                        I'm a Graduate Research Assistant at UMass Dartmouth working on robot learning. I record my
+                        own teleoperation demos on a Hugging Face LeRobot SO-101 arm, fine-tune SmolVLA (a vision
+                        language action model with about 450M parameters) on them, and compare it against an ACT
+                        baseline. I set up the hardware too: two calibrated cameras on mounts I designed and 3D
+                        printed.
+                    </p>
+                    <p>
+                        These days I'm reproducing the BadVLA backdoor attacks to see how these policies break when
+                        someone tampers with them. Next step is running the same tests on the policies I trained.
+                    </p>
+                    <p>
+                        Before grad school I was an ML Engineer at Clove Technologies, where I built a computer
+                        vision pipeline that pulled building footprints out of geospatial data with over a million
+                        records.
+                    </p>
+                </div>
+            </div>
+
+            <dl class="facts reveal">
+                <div>
+                    <dt>96.98%</dt>
+                    <dd>task success with my fine-tuned SmolVLA. The ACT baseline got 72.89%.</dd>
+                </div>
+                <div>
+                    <dt>60%</dt>
+                    <dd>faster processing after reworking feature extraction at Clove</dd>
+                </div>
+                <div>
+                    <dt>118K</dt>
+                    <dd>COCO images used to train my colorization GAN</dd>
+                </div>
+            </dl>
+        </section>
+
+        <!-- Experience -->
+        <section class="section" id="experience">
+            <div class="section-head reveal">
+                <span class="index">// 02</span>
+                <h2>Experience</h2>
+            </div>
+
+            <ol class="jobs">
+                <li class="job reveal">
+                    <div class="job-when">Dec 2025 → Aug 2026</div>
+                    <div class="job-what">
+                        <h3>Graduate Research Assistant</h3>
+                        <p class="job-org">University of Massachusetts Dartmouth, robot learning</p>
+                        <ul>
+                            <li>Fine-tuned and evaluated SmolVLA on teleoperation demos I collected on the SO-101,
+                                and benchmarked it against an ACT (Action Chunking Transformer) baseline on
+                                pick-and-place tasks.</li>
+                            <li>Built the data collection pipeline for the LeRobot SO-101 6-DOF arm, recording demos
+                                across several manipulation tasks.</li>
+                            <li>Set up and calibrated a synchronized dual-camera rig for multi-view observations,
+                                with 3D-printed mounts so the cameras land in the same spot every session.</li>
+                            <li>Compared VLA and action chunking approaches on task success, generalization and
+                                failure modes.</li>
+                            <li>Reproducing BadVLA backdoor attacks to study security holes in VLA-based
+                                manipulation policies.</li>
+                        </ul>
+                        <p class="tags"><span>PyTorch</span><span>LeRobot</span><span>SmolVLA</span><span>ACT</span><span>Imitation
+                                Learning</span></p>
                     </div>
+                </li>
+
+                <li class="job reveal">
+                    <div class="job-when">Dec 2023 → Mar 2024</div>
+                    <div class="job-what">
+                        <h3>ML Engineer II, Machine Learning &amp; GIS</h3>
+                        <p class="job-org">Clove Technologies, Visakhapatnam, India</p>
+                        <ul>
+                            <li>Built a computer vision and deep learning pipeline that extracts building footprints
+                                from geospatial datasets with 1M+ spatial records.</li>
+                            <li>Reworked the feature extraction step, which made processing 60% faster.</li>
+                            <li>Wrote the preprocessing that turns raw geospatial data into ML-ready datasets, and
+                                tested how the pipeline held up as the data grew.</li>
+                        </ul>
+                        <p class="tags"><span>Computer Vision</span><span>Deep Learning</span><span>Python</span><span>GIS</span></p>
+                    </div>
+                </li>
+
+                <li class="job reveal">
+                    <div class="job-when">Sep 2025 → Aug 2026</div>
+                    <div class="job-what">
+                        <h3>Graduate Admissions Assistant</h3>
+                        <p class="job-org">University of Massachusetts Dartmouth</p>
+                        <ul>
+                            <li>Built interactive Tableau and Excel dashboards to track admissions funnel metrics
+                                and spot enrollment trends across large institutional datasets.</li>
+                            <li>Queried, maintained and validated applicant records in Slate CRM using SQL, and
+                                shaped the data into reports for stakeholders.</li>
+                            <li>Put data validation, security, provenance and metadata practices in place to keep
+                                the data accurate and meet institutional compliance requirements.</li>
+                            <li>Analyzed structured data with Python, SQL and Excel to give stakeholders insights
+                                they could act on.</li>
+                        </ul>
+                        <p class="tags"><span>SQL</span><span>Python</span><span>Tableau</span><span>Slate
+                                CRM</span></p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Projects -->
+        <section class="section" id="projects">
+            <div class="section-head reveal">
+                <span class="index">// 03</span>
+                <h2>Selected projects</h2>
+                <a href="https://github.com/Thrushith?tab=repositories" target="_blank" rel="noopener"
+                    class="head-link">All repositories <i class="fa-solid fa-arrow-up-right"></i></a>
+            </div>
+
+            <div class="projects">
+                <article class="project reveal">
+                    <div class="project-media project-chart" role="img"
+                        aria-label="Task success rate: SmolVLA 96.98 percent, ACT baseline 72.89 percent">
+                        <p class="chart-title">Task success rate, pick-and-place</p>
+                        <div class="bar-row">
+                            <span class="bar-label">SmolVLA</span>
+                            <div class="bar"><div class="bar-fill accent" style="--v: 96.98%"></div></div>
+                            <span class="bar-value">96.98%</span>
+                        </div>
+                        <div class="bar-row">
+                            <span class="bar-label">ACT</span>
+                            <div class="bar"><div class="bar-fill" style="--v: 72.89%"></div></div>
+                            <span class="bar-value">72.89%</span>
+                        </div>
+                        <p class="chart-note">SO-101 6-DOF arm, two cameras, self-collected demos</p>
+                    </div>
+                    <div class="project-body">
+                        <span class="project-no">P/01</span>
+                        <h3>Vision-Language-Action Policies for Robot Manipulation</h3>
+                        <p>I fine-tuned SmolVLA (about 450M parameters) on my own teleop dataset and put it up
+                            against an ACT baseline. Also in here: the vision processing for the two-camera setup
+                            and the scripts that make training and evaluation repeatable.</p>
+                        <p class="tags"><span>PyTorch</span><span>LeRobot</span><span>SmolVLA</span><span>Imitation
+                                Learning</span></p>
+                    </div>
+                </article>
+
+                <a href="https://github.com/Thrushith/grayscale-pic-color-GAN" target="_blank" rel="noopener"
+                    class="project reveal">
+                    <div class="project-media">
+                        <img src="images/project-gan.svg" alt="Illustration: a grayscale landscape being colorized by the GAN, with the generator, discriminator and loss pipeline below">
+                    </div>
+                    <div class="project-body">
+                        <span class="project-no">P/02</span>
+                        <h3>Coloring Grayscale Photos with a GAN</h3>
+                        <p>A conditional GAN with a U-Net generator (ResNet-18 backbone) and a 70×70 PatchGAN
+                            discriminator, trained for 100 epochs on about 118K COCO images. It predicts color in
+                            CIE LAB space using adversarial plus weighted L1 loss. There's a React/Angular web demo
+                            so anyone can try it.</p>
+                        <p class="tags"><span>PyTorch</span><span>GANs</span><span>Transfer
+                                Learning</span><span>React</span></p>
+                        <span class="project-cta">View source <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/Thrushith/basic-hand-gesture-" target="_blank" rel="noopener"
+                    class="project reveal">
+                    <div class="project-media">
+                        <img src="images/project-gesture.svg"
+                            alt="Illustration: a hand tracked by a webcam with its joints and a detection box highlighted">
+                    </div>
+                    <div class="project-body">
+                        <span class="project-no">P/03</span>
+                        <h3>Real-time Hand Gesture Recognition</h3>
+                        <p>Reads sign language gestures live from a webcam. I built it to make it a bit easier for
+                            speech-impaired people to communicate.</p>
+                        <p class="tags"><span>Computer Vision</span><span>OpenCV</span><span>ML</span></p>
+                        <span class="project-cta">View source <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Toolkit -->
+        <section class="section" id="toolkit">
+            <div class="section-head reveal">
+                <span class="index">// 04</span>
+                <h2>Toolkit</h2>
+            </div>
+
+            <p class="readout reveal" aria-live="polite"><span class="caret">&gt;</span> <span
+                    id="readout">hover or tap a tool to see where I've used it</span><span class="cursor">_</span>
+            </p>
+
+            <div class="stack reveal">
+                <div class="stack-row">
+                    <h3>Machine learning</h3>
+                    <ul class="tiles">
+                        <li><button class="tile" style="--brand:#ee4c2c"
+                                data-note="pytorch: trained SmolVLA, ACT and the colorization GAN"><i
+                                    class="devicon-pytorch-original"></i><span>PyTorch</span></button></li>
+                        <li><button class="tile" style="--brand:#ffd21e"
+                                data-note="hugging face: LeRobot for SO-101 data collection and SmolVLA fine-tuning"><i
+                                    class="icon-mask" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/huggingface.svg)"></i><span>Hugging Face</span></button></li>
+                        <li><button class="tile" style="--brand:#5c3ee8"
+                                data-note="opencv: camera pipelines and real-time gesture recognition"><i
+                                    class="devicon-opencv-plain"></i><span>OpenCV</span></button></li>
+                        <li><button class="tile" style="--brand:#7dd3fc"
+                                data-note="computer vision: building footprints at Clove, multi-view robot cameras"><i
+                                    class="fa-solid fa-eye"></i><span>Vision</span></button></li>
+                        <li><button class="tile" style="--brand:#f2a541"
+                                data-note="imitation learning: robot policies learned from my own teleop demos"><i
+                                    class="fa-solid fa-robot"></i><span>Imitation</span></button></li>
+                        <li><button class="tile" style="--brand:#c084fc"
+                                data-note="gans: U-Net + PatchGAN colorization trained on 118K COCO images"><i
+                                    class="fa-solid fa-wand-magic-sparkles"></i><span>GANs</span></button></li>
+                    </ul>
                 </div>
 
-                <!-- Form on the right/bottom -->
-                <form action="https://formsubmit.co/thrushithy@gmail.com" method="POST" class="contact-form">
+                <div class="stack-row">
+                    <h3>LLMs</h3>
+                    <ul class="tiles">
+                        <li><button class="tile" style="--brand:#e8e3d8"
+                                data-note="llms: building with large language models (Claude 101, Anthropic Academy)"><i
+                                    class="fa-solid fa-comments"></i><span>LLMs</span></button></li>
+                        <li><button class="tile" style="--brand:#1c9b8e"
+                                data-note="langchain: chaining LLM calls, tools and retrievers into apps"><i
+                                    class="icon-mask" style="--icon:url(https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/langchain.svg)"></i><span>LangChain</span></button></li>
+                        <li><button class="tile" style="--brand:#a78bfa"
+                                data-note="rag: retrieval-augmented generation, grounding LLM answers in your own documents"><i
+                                    class="fa-solid fa-book-open-reader"></i><span>RAG</span></button></li>
+                    </ul>
+                </div>
 
-                    <!-- Honeypot -->
-                    <input type="text" name="_honey" style="display:none">
+                <div class="stack-row">
+                    <h3>Evaluation</h3>
+                    <ul class="tiles">
+                        <li><button class="tile" style="--brand:#4ade80"
+                                data-note="benchmarking: SmolVLA vs ACT on task success rate"><i
+                                    class="fa-solid fa-gauge-high"></i><span>Benchmarks</span></button></li>
+                        <li><button class="tile" style="--brand:#fb7185"
+                                data-note="failure analysis: comparing failure modes across manipulation tasks"><i
+                                    class="fa-solid fa-magnifying-glass-chart"></i><span>Failure modes</span></button>
+                        </li>
+                        <li><button class="tile" style="--brand:#f87171"
+                                data-note="robustness: reproducing BadVLA backdoor attacks on VLA policies"><i
+                                    class="fa-solid fa-shield-halved"></i><span>Robustness</span></button></li>
+                    </ul>
+                </div>
 
-                    <!-- Disable Captcha -->
+                <div class="stack-row">
+                    <h3>Core</h3>
+                    <ul class="tiles">
+                        <li><button class="tile" style="--brand:#3776ab"
+                                data-note="python: pretty much everything on this page"><i
+                                    class="devicon-python-plain"></i><span>Python</span></button></li>
+                        <li><button class="tile" style="--brand:#fcc624"
+                                data-note="linux: home base for development and training"><i
+                                    class="devicon-linux-plain"></i><span>Linux</span></button></li>
+                        <li><button class="tile" style="--brand:#4eaa25" data-note="bash: shell scripting"><i
+                                    class="devicon-bash-plain"></i><span>Bash</span></button></li>
+                        <li><button class="tile" style="--brand:#f05032" data-note="git: version control and CI/CD"><i
+                                    class="devicon-git-plain"></i><span>Git</span></button></li>
+                        <li><button class="tile" style="--brand:#e2e8f0"
+                                data-note="3d printing: designed and printed the camera mounts for the robot rig"><i
+                                    class="fa-solid fa-cube"></i><span>3D printing</span></button></li>
+                    </ul>
+                </div>
+
+                <div class="stack-row">
+                    <h3>Ship &amp; store</h3>
+                    <ul class="tiles">
+                        <li><button class="tile" style="--brand:#2496ed"
+                                data-note="docker: containers (Docker &amp; Kubernetes cert, Udemy)"><i
+                                    class="devicon-docker-plain"></i><span>Docker</span></button></li>
+                        <li><button class="tile" style="--brand:#61dafb"
+                                data-note="react: web demo for the GAN colorizer"><i
+                                    class="devicon-react-original"></i><span>React</span></button></li>
+                        <li><button class="tile" style="--brand:#dd0031"
+                                data-note="angular: web demo for the GAN colorizer"><i
+                                    class="devicon-angular-plain"></i><span>Angular</span></button></li>
+                        <li><button class="tile" style="--brand:#ff9900" data-note="aws: S3, EC2 and Lambda"><i
+                                    class="devicon-amazonwebservices-plain-wordmark"></i><span>AWS</span></button></li>
+                        <li><button class="tile" style="--brand:#4479a1"
+                                data-note="sql / mysql: querying admissions data in Slate CRM"><i
+                                    class="devicon-mysql-plain"></i><span>SQL</span></button></li>
+                        <li><button class="tile" style="--brand:#47a248" data-note="mongodb: document storage"><i
+                                    class="devicon-mongodb-plain"></i><span>MongoDB</span></button></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education + Certifications -->
+        <section class="section" id="education">
+            <div class="section-head reveal">
+                <span class="index">// 05</span>
+                <h2>Education</h2>
+            </div>
+
+            <div class="split reveal">
+                <div>
+                    <h3 class="split-title">Degrees</h3>
+                    <ul class="ledger">
+                        <li>
+                            <div>
+                                <strong>M.S. Data Science</strong>
+                                <span>University of Massachusetts Dartmouth</span>
+                            </div>
+                            <div class="ledger-side"><em>GPA 3.94</em>Aug 2026</div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>B.Tech, AI &amp; Data Science</strong>
+                                <span>Vignan's Institute of Information Technology</span>
+                            </div>
+                            <div class="ledger-side"><em>GPA 3.5</em>May 2024</div>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="split-title">Certifications</h3>
+                    <ul class="ledger">
+                        <li>
+                            <div>
+                                <strong>Claude 101</strong>
+                                <span>Anthropic Academy</span>
+                            </div>
+                            <div class="ledger-side"><a href="https://verify.skilljar.com/c/miefge6hj9op"
+                                    target="_blank" rel="noopener" class="verify">Verify ↗</a></div>
+                        </li>
+                        <li>
+                            <div>
+                                <strong>Docker &amp; Kubernetes</strong>
+                                <span>Udemy</span>
+                            </div>
+                            <div class="ledger-side"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section contact" id="contact">
+            <div class="section-head reveal">
+                <span class="index">// 06</span>
+                <h2>Contact</h2>
+            </div>
+
+            <div class="contact-grid reveal">
+                <div class="contact-copy">
+                    <p class="contact-big">Building robots, vision models, or something that has to ship?
+                        <em>Let's talk.</em></p>
+                    <a href="mailto:thrushithy@gmail.com" class="mail">thrushithy@gmail.com</a>
+                    <ul class="contact-links">
+                        <li><a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank"
+                                rel="noopener"><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/thrushithyelamanchili</a>
+                        </li>
+                        <li><a href="https://github.com/Thrushith" target="_blank" rel="noopener"><i
+                                    class="fa-brands fa-github"></i> github.com/Thrushith</a></li>
+                    </ul>
+                </div>
+
+                <form action="https://formsubmit.co/thrushithy@gmail.com" method="POST" class="terminal">
+                    <div class="terminal-bar">
+                        <span></span><span></span><span></span>
+                        <p>message.sh</p>
+                    </div>
+
+                    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
                     <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="New message from thrushith.com">
 
-                    <!-- Return to site (optional, can be cleaner) -->
-                    <!-- <input type="hidden" name="_next" value="http://yourwebsite.com/thanks"> -->
+                    <label class="field">
+                        <span>&gt; name</span>
+                        <input type="text" name="name" placeholder="optional" autocomplete="name">
+                    </label>
+                    <label class="field">
+                        <span>&gt; email<b>*</b></span>
+                        <input type="email" name="email" placeholder="so I can write back" required
+                            autocomplete="email">
+                    </label>
+                    <label class="field">
+                        <span>&gt; message<b>*</b></span>
+                        <textarea name="message" rows="4" placeholder="hi thrushith..." required></textarea>
+                    </label>
 
-                    <div class="form-group">
-                        <label for="name">Who are you? (Optional)</label>
-                        <input type="text" id="name" name="name" placeholder="Name or 'Anonymous'" class="form-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email (to reach you back)</label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com" class="form-input"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Say hello..." required
-                            class="form-input"></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        Send Message <i class="fa-solid fa-paper-plane"></i>
-                    </button>
-
+                    <button type="submit" class="btn btn-solid">Send it <i class="fa-solid fa-arrow-right"></i></button>
                 </form>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer
-        style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: var(--glass-border); background: var(--nav-bg);">
-        <p style="margin: 0; font-size: 0.9rem;">&copy; 2026 Thrushith Yelamanchili. Crafted with <i
-                class="fa-solid fa-code" style="color: var(--accent-primary);"></i> and <i class="fa-solid fa-heart"
-                style="color: var(--accent-secondary);"></i>.</p>
+    <footer class="footer">
+        <p>Thrushith Yelamanchili</p>
+        <p>© <span id="year">2026</span>. Designed and built by me.</p>
+        <a href="#top">Back to top ↑</a>
     </footer>
 
     <script src="script/script.js"></script>
