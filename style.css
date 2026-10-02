@@ -266,12 +266,16 @@ main {
 }
 
 .btn-ghost {
+    background: transparent;
     border-color: var(--line-strong);
     color: var(--text);
 }
 
-.btn-ghost:hover {
-    border-color: var(--text);
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    outline: none;
 }
 
 .tags {
