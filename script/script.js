@@ -47,6 +47,52 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('main section[id]').forEach(section => sectionObserver.observe(section));
 
+// Contact form: send in the background and answer inside the terminal box,
+// so nobody lands on FormSubmit's generic page.
+const form = document.getElementById('contactForm');
+const formStatus = form.querySelector('.form-status');
+const formDone = form.querySelector('.form-done');
+const formFields = [...form.children].filter(el => !el.matches('.terminal-bar, .form-done, input[type="hidden"], .hp'));
+
+// If JS is on but the background send fails, the normal submit still lands on our own thanks page
+form.querySelector('input[name="_next"]').value = location.origin + '/thanks.html';
+
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (form.classList.contains('sending')) return;
+
+    form.classList.add('sending');
+    formStatus.classList.remove('error');
+    formStatus.textContent = '> sending...';
+
+    try {
+        const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+            method: 'POST',
+            headers: { Accept: 'application/json' },
+            body: new FormData(form)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'send failed');
+
+        form.reset();
+        formStatus.textContent = '';
+        formFields.forEach(el => { el.hidden = true; });
+        formDone.hidden = false;
+        formDone.querySelector('#sendAnother').focus();
+    } catch (err) {
+        formStatus.classList.add('error');
+        formStatus.textContent = "> couldn't send that. Try again, or email me directly at thrushithy@gmail.com";
+    } finally {
+        form.classList.remove('sending');
+    }
+});
+
+document.getElementById('sendAnother').addEventListener('click', () => {
+    formDone.hidden = true;
+    formFields.forEach(el => { el.hidden = false; });
+    form.querySelector('input[name="email"]').focus();
+});
+
 // Keep the footer year current
 document.getElementById('year').textContent = new Date().getFullYear();
 

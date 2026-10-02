@@ -57,6 +57,10 @@ a {
     text-decoration: none;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -1223,6 +1227,58 @@ main {
 .field textarea:focus {
     outline: none;
     border-bottom-color: var(--accent);
+}
+
+.form-status {
+    min-height: 1.4rem;
+    margin-top: 1rem;
+    font-family: var(--mono);
+    font-size: .8rem;
+    color: var(--text-dim);
+}
+
+.form-status.error {
+    color: #f87171;
+}
+
+.terminal.sending button[type="submit"] {
+    opacity: .6;
+    pointer-events: none;
+}
+
+.form-done {
+    padding: .5rem 0 .25rem;
+    animation: rise .6s var(--ease) both;
+}
+
+.done-line {
+    font-family: var(--mono);
+    font-size: .85rem;
+    margin-bottom: .4rem;
+}
+
+.done-line .caret,
+.done-line .ok {
+    color: var(--accent);
+}
+
+.done-line.dim {
+    color: var(--text-dim);
+}
+
+.done-big {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    line-height: 1.15;
+    margin: 1.25rem 0 .75rem;
+}
+
+.done-big em {
+    color: var(--accent);
+}
+
+.form-done .btn {
+    margin-top: 1.25rem;
 }
 
 .terminal .btn {

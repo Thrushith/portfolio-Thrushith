@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message sent | Thrushith Yelamanchili</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#0e0d0b">
+    <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e0d0b'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23f2a541'%3Ety%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=5">
+    <style>
+        .thanks {
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            padding: 2rem var(--gutter);
+        }
+
+        .thanks .terminal {
+            width: min(34rem, 100%);
+            padding-bottom: 2rem;
+        }
+
+        .thanks .btn {
+            margin-top: 1.5rem;
+        }
+
+        .back-note {
+            margin-top: 1rem;
+            font-family: var(--mono);
+            font-size: .75rem;
+            color: var(--text-faint);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="thanks">
+        <div class="terminal">
+            <div class="terminal-bar">
+                <span></span><span></span><span></span>
+                <p>message.sh</p>
+            </div>
+
+            <p class="done-line"><span class="caret">&gt;</span> ./message.sh</p>
+            <p class="done-line dim">sending... <span class="ok">done</span></p>
+            <h1 class="done-big">Got it. <em>Thanks for reaching out.</em></h1>
+            <p class="done-line dim">I read every message and usually reply within a couple of days.</p>
+
+            <a href="./" class="btn btn-solid">Back to the site</a>
+            <p class="back-note" id="backNote">Taking you back in <span id="count">10</span>s.</p>
+        </div>
+    </main>
+
+    <script>
+        // Head back to the homepage on its own after a few seconds
+        let left = 10;
+        const count = document.getElementById('count');
+        const timer = setInterval(() => {
+            left -= 1;
+            count.textContent = left;
+            if (left <= 0) {
+                clearInterval(timer);
+                location.href = './';
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

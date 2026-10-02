@@ -17,7 +17,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
 </head>
 
 <body>
@@ -548,7 +548,7 @@
                     </ul>
                 </div>
 
-                <form action="https://formsubmit.co/thrushithy@gmail.com" method="POST" class="terminal">
+                <form action="https://formsubmit.co/thrushithy@gmail.com" method="POST" class="terminal" id="contactForm">
                     <div class="terminal-bar">
                         <span></span><span></span><span></span>
                         <p>message.sh</p>
@@ -557,6 +557,8 @@
                     <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_subject" value="New message from thrushith.com">
+                    <!-- used only if JavaScript is off: FormSubmit sends people here instead of its own page -->
+                    <input type="hidden" name="_next" value="http://thrushith.com/thanks.html">
 
                     <label class="field">
                         <span>&gt; name</span>
@@ -573,6 +575,15 @@
                     </label>
 
                     <button type="submit" class="btn btn-solid">Send it <i class="fa-solid fa-arrow-right"></i></button>
+                    <p class="form-status" role="status" aria-live="polite"></p>
+
+                    <div class="form-done" hidden>
+                        <p class="done-line"><span class="caret">&gt;</span> ./message.sh</p>
+                        <p class="done-line dim">sending... <span class="ok">done</span></p>
+                        <p class="done-big">Got it. <em>Thanks for reaching out.</em></p>
+                        <p class="done-line dim">I read every message and usually reply within a couple of days.</p>
+                        <button type="button" class="btn btn-ghost" id="sendAnother">Send another</button>
+                    </div>
                 </form>
             </div>
         </section>
@@ -584,7 +595,7 @@
         <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script/script.js?v=4"></script>
+    <script src="script/script.js?v=5"></script>
 </body>
 
 </html>
