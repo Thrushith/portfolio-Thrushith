@@ -341,7 +341,7 @@ main {
 .hero-name {
     font-family: var(--serif);
     font-weight: 400;
-    font-size: clamp(3.4rem, 13vw, 11.5rem);
+    font-size: clamp(3rem, min(13vw, 24vh), 11.5rem);
     line-height: .88;
     letter-spacing: -.035em;
     margin-bottom: clamp(2rem, 5vw, 3.5rem);
@@ -447,14 +447,8 @@ main {
 .about {
     display: grid;
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-    gap: clamp(2rem, 6vw, 5rem);
-    align-items: start;
-}
-
-.about-copy p {
-    color: var(--text-dim);
-    margin-bottom: 1.25rem;
-    max-width: 38rem;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
 }
 
 .about-big {
@@ -463,10 +457,136 @@ main {
     line-height: 1.12;
     color: var(--text);
     letter-spacing: -.015em;
+    margin-bottom: 1.75rem;
 }
 
 .about-big em {
     color: var(--accent);
+}
+
+.about-copy {
+    color: var(--text-dim);
+    max-width: 38rem;
+}
+
+/* Animated SO-101 arm */
+.robot-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg-sunk);
+    padding: 1rem 1rem .9rem;
+}
+
+.robot {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.robot .cam rect {
+    fill: var(--bg-raised);
+    stroke: var(--line-strong);
+}
+
+.robot .lens {
+    fill: var(--bg-sunk);
+    stroke: var(--accent);
+    stroke-width: 2;
+}
+
+.robot .cam-cone {
+    fill: var(--accent);
+    opacity: .05;
+}
+
+.robot .rec {
+    fill: #f87171;
+}
+
+.robot .table {
+    stroke: var(--line-strong);
+    stroke-width: 2;
+}
+
+.robot .zone {
+    fill: var(--line-strong);
+}
+
+.robot .ball {
+    fill: var(--accent);
+}
+
+.robot .arm-base {
+    fill: var(--bg-raised);
+    stroke: var(--line-strong);
+}
+
+.robot .arm-link {
+    fill: #2c2a25;
+    stroke: var(--line-strong);
+}
+
+.robot .arm-palm,
+.robot .arm-finger {
+    fill: var(--text-dim);
+}
+
+.robot .arm-joint {
+    fill: var(--bg-sunk);
+    stroke: var(--accent);
+    stroke-width: 3;
+}
+
+.robot-card figcaption {
+    margin-top: .6rem;
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--text-faint);
+}
+
+.robot-card figcaption > span:not(.spread-w) {
+    color: var(--accent);
+}
+
+/* What I focus on */
+.focus {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.focus-card {
+    padding: 1.4rem 1.25rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg-raised);
+    transition: border-color .3s, transform .4s var(--ease);
+}
+
+.focus-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-3px);
+}
+
+.focus-card > i {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.focus-card h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    margin-bottom: .6rem;
+}
+
+.focus-card p {
+    font-size: .92rem;
+    color: var(--text-dim);
+    line-height: 1.55;
 }
 
 .facts {
@@ -1154,6 +1274,8 @@ main {
         background: var(--bg);
         border-bottom: 1px solid var(--line);
         font-size: 1rem;
+        max-height: calc(100svh - 4.4rem);
+        overflow-y: auto;
         transform: translateY(-120%);
         transition: transform .4s var(--ease);
     }
@@ -1196,6 +1318,14 @@ main {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+
+    .focus {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .robot-card {
+        max-width: 34rem;
+    }
 }
 
 @media (max-width: 640px) {
@@ -1214,6 +1344,10 @@ main {
     }
 
     .facts {
+        grid-template-columns: 1fr;
+    }
+
+    .focus {
         grid-template-columns: 1fr;
     }
 
@@ -1261,6 +1395,67 @@ main {
 .ledger-side em {
         display: inline;
         margin-right: .75rem;
+    }
+}
+
+/* Touch screens: bigger tap targets and press feedback in place of hover */
+@media (pointer: coarse) {
+
+    .hero-meta a,
+    .verify,
+    .contact-links a,
+    .footer a,
+    .head-link,
+    .mail {
+        display: inline-block;
+        padding-block: .7rem;
+    }
+
+    .contact-links li {
+        margin-bottom: 0;
+    }
+
+    .project:active {
+        transform: translateY(-2px);
+        border-color: var(--line-strong);
+    }
+
+    .btn:active {
+        transform: scale(.97);
+    }
+
+    .tile:active i {
+        transform: scale(1.12);
+    }
+}
+
+@media (max-width: 640px) {
+
+    /* 16px stops iOS Safari from zooming into the form */
+    .field input,
+    .field textarea {
+        font-size: 16px;
+    }
+
+    .tile > span {
+        font-size: .74rem;
+    }
+
+    .tags > span {
+        font-size: .76rem;
+    }
+
+    .hero-meta li > span:not(.spread-w),
+    .chart-title,
+    .chart-note,
+    .project-no,
+    .split-title,
+    .stack-row h3 {
+        font-size: .76rem;
+    }
+
+    .bar-row {
+        font-size: .76rem;
     }
 }
 

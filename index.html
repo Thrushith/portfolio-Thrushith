@@ -17,7 +17,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 
 <body>
@@ -81,33 +81,132 @@
             </div>
 
             <div class="about reveal">
-                <p class="about-big">
-                    I like models that actually <em>do something</em>. Pick up a cup, color an old photo, trace a
-                    building from a satellite image.
-                </p>
-
-                <div class="about-copy">
-                    <p>
-                        My degree says data science, but my heart is in AI and machine learning. That's where I
-                        spend my time, and it's the kind of work I want to keep doing.
+                <div class="about-lead">
+                    <p class="about-big">
+                        I build machine learning for <em>robots</em>. Models that watch a person do a task, then
+                        do it themselves.
                     </p>
-                    <p>
-                        I'm a Graduate Research Assistant at UMass Dartmouth working on robot learning. I record my
-                        own teleoperation demos on a Hugging Face LeRobot SO-101 arm, fine-tune SmolVLA (a vision
-                        language action model with about 450M parameters) on them, and compare it against an ACT
-                        baseline. I set up the hardware too: two calibrated cameras on mounts I designed and 3D
-                        printed.
-                    </p>
-                    <p>
-                        These days I'm reproducing the BadVLA backdoor attacks to see how these policies break when
-                        someone tampers with them. Next step is running the same tests on the policies I trained.
-                    </p>
-                    <p>
-                        Before grad school I was an ML Engineer at Clove Technologies, where I built a computer
-                        vision pipeline that pulled building footprints out of geospatial data with over a million
-                        records.
+                    <p class="about-copy">
+                        I'm a Graduate Research Assistant at UMass Dartmouth working on robot learning. I record
+                        my own demos on a Hugging Face LeRobot SO-101 arm, fine-tune SmolVLA, a vision language
+                        action model with about 450M parameters, and test it against an ACT baseline. I built
+                        the rig too: two calibrated cameras on mounts I designed and 3D printed. My degree says
+                        data science, but AI and machine learning are the work I want to keep doing.
                     </p>
                 </div>
+
+                <figure class="robot-card">
+                    <svg class="robot" viewBox="0 0 400 330" role="img"
+                        aria-label="Animated robot arm picking up a ball and placing it on the other side while two cameras watch">
+                        <defs>
+                            <pattern id="botgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <path d="M20 0H0V20" fill="none" stroke="#2a2823" stroke-width="1" />
+                            </pattern>
+                        </defs>
+                        <rect width="400" height="330" fill="url(#botgrid)" opacity=".6" />
+
+                        <!-- two cameras and what they see -->
+                        <g class="cam">
+                            <path d="M52 52 L150 300 L40 300 Z" class="cam-cone" />
+                            <rect x="34" y="34" width="34" height="22" rx="4" />
+                            <circle cx="51" cy="45" r="6" class="lens" />
+                        </g>
+                        <g class="cam">
+                            <path d="M348 52 L250 300 L360 300 Z" class="cam-cone" />
+                            <rect x="332" y="34" width="34" height="22" rx="4" />
+                            <circle cx="349" cy="45" r="6" class="lens" />
+                        </g>
+                        <circle cx="76" cy="34" r="3" class="rec">
+                            <animate attributeName="opacity" values="1;.15;1" dur="1.4s" repeatCount="indefinite" />
+                        </circle>
+
+                        <!-- table and drop zones -->
+                        <line x1="20" y1="310" x2="380" y2="310" class="table" />
+                        <rect x="62" y="306" width="36" height="4" class="zone" />
+                        <rect x="302" y="306" width="36" height="4" class="zone" />
+
+                        <!-- ball resting on either side -->
+                        <circle cx="80" cy="295" r="11" class="ball">
+                            <animate attributeName="opacity" calcMode="discrete" keyTimes="0;.10;.91;1"
+                                values="1;0;1;1" dur="12s" repeatCount="indefinite" />
+                        </circle>
+                        <circle cx="320" cy="295" r="11" class="ball" opacity="0">
+                            <animate attributeName="opacity" calcMode="discrete" keyTimes="0;.41;.60;1"
+                                values="0;1;0;0" dur="12s" repeatCount="indefinite" />
+                        </circle>
+
+                        <!-- the arm: shoulder at (200,270), links of 110 and 120 to the fingertips -->
+                        <g transform="translate(200 270)">
+                            <rect x="-30" y="12" width="60" height="28" rx="5" class="arm-base" />
+                            <g>
+                                <animateTransform attributeName="transform" type="rotate" dur="12s"
+                                    repeatCount="indefinite" calcMode="spline"
+                                    keyTimes="0;.06;.10;.17;.31;.37;.41;.47;.5;.56;.60;.67;.81;.87;.91;.97;1"
+                                    keySplines=".4 0 .2 1;0 0 1 1;.4 0 .2 1;.4 0 .2 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;.4 0 .2 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;0 0 1 1"
+                                    values="-14.5;-40.4;-40.4;-14.5;14.5;40.4;40.4;14.5;14.5;40.4;40.4;14.5;-14.5;-40.4;-40.4;-14.5;-14.5" />
+                                <rect x="-9" y="-110" width="18" height="110" rx="9" class="arm-link" />
+                                <g transform="translate(0 -110)">
+                                    <g>
+                                        <animateTransform attributeName="transform" type="rotate" dur="12s"
+                                            repeatCount="indefinite" calcMode="spline"
+                                            keyTimes="0;.06;.10;.17;.31;.37;.41;.47;.5;.56;.60;.67;.81;.87;.91;.97;1"
+                                            keySplines=".4 0 .2 1;0 0 1 1;.4 0 .2 1;.4 0 .2 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;.4 0 .2 1;.4 0 .2 1;0 0 1 1;.4 0 .2 1;0 0 1 1"
+                                            values="-115.1;-115.6;-115.6;-115.1;115.1;115.6;115.6;115.1;115.1;115.6;115.6;115.1;-115.1;-115.6;-115.6;-115.1;-115.1" />
+                                        <rect x="-7" y="-100" width="14" height="100" rx="7" class="arm-link" />
+                                        <rect x="-16" y="-104" width="32" height="8" rx="3" class="arm-palm" />
+                                        <!-- carried ball -->
+                                        <circle cx="0" cy="-120" r="11" class="ball" opacity="0">
+                                            <animate attributeName="opacity" calcMode="discrete"
+                                                keyTimes="0;.10;.41;.60;.91;1" values="0;1;0;1;0;0" dur="12s"
+                                                repeatCount="indefinite" />
+                                        </circle>
+                                        <!-- fingers close while carrying -->
+                                        <rect x="-16" y="-126" width="4" height="24" rx="2" class="arm-finger">
+                                            <animate attributeName="x" calcMode="discrete"
+                                                keyTimes="0;.10;.41;.60;.91;1" values="-16;-14;-16;-14;-16;-16"
+                                                dur="12s" repeatCount="indefinite" />
+                                        </rect>
+                                        <rect x="12" y="-126" width="4" height="24" rx="2" class="arm-finger">
+                                            <animate attributeName="x" calcMode="discrete"
+                                                keyTimes="0;.10;.41;.60;.91;1" values="12;10;12;10;12;12"
+                                                dur="12s" repeatCount="indefinite" />
+                                        </rect>
+                                    </g>
+                                    <circle r="8" class="arm-joint" />
+                                </g>
+                            </g>
+                            <circle r="10" class="arm-joint" />
+                        </g>
+                    </svg>
+                    <figcaption><span>SO-101</span> pick and place, watched by two cameras. Roughly what my
+                        VLA policy does all day.</figcaption>
+                </figure>
+            </div>
+
+            <div class="focus reveal">
+                <article class="focus-card">
+                    <i class="fa-solid fa-robot"></i>
+                    <h3>Robot learning</h3>
+                    <p>Imitation learning and vision-language-action models. SmolVLA vs ACT on a real SO-101 arm,
+                        trained on demos I collected myself.</p>
+                </article>
+                <article class="focus-card">
+                    <i class="fa-solid fa-eye"></i>
+                    <h3>Computer vision</h3>
+                    <p>Multi-camera perception for the robot, building footprint extraction from 1M+ geospatial
+                        records, and a GAN that colorizes photos.</p>
+                </article>
+                <article class="focus-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Robust AI</h3>
+                    <p>Reproducing BadVLA backdoor attacks to see how robot policies break, and looking at failure
+                        modes instead of only success rates.</p>
+                </article>
+                <article class="focus-card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>LLMs</h3>
+                    <p>Building with large language models, LangChain and retrieval-augmented generation.</p>
+                </article>
             </div>
 
             <dl class="facts reveal">
@@ -485,7 +584,7 @@
         <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script/script.js"></script>
+    <script src="script/script.js?v=4"></script>
 </body>
 
 </html>

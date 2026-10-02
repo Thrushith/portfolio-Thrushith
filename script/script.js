@@ -50,7 +50,6 @@ document.querySelectorAll('main section[id]').forEach(section => sectionObserver
 // Keep the footer year current
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const fineMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Toolkit tiles: tilt toward the cursor and print a note in the readout
@@ -79,22 +78,30 @@ document.querySelectorAll('.tile').forEach(tile => {
     tile.addEventListener('mouseenter', show);
     tile.addEventListener('focus', show);
 
-    tile.addEventListener('mousemove', e => {
+    const tilt = (clientX, clientY) => {
         const r = tile.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
+        const x = Math.min(Math.max((clientX - r.left) / r.width, 0), 1);
+        const y = Math.min(Math.max((clientY - r.top) / r.height, 0), 1);
         tile.style.setProperty('--mx', x * 100 + '%');
         tile.style.setProperty('--my', y * 100 + '%');
         if (!reduceMotion) {
             tile.style.setProperty('--ry', (x - 0.5) * 22 + 'deg');
             tile.style.setProperty('--rx', (0.5 - y) * 22 + 'deg');
         }
-    });
-
-    tile.addEventListener('mouseleave', () => {
+    };
+    const untilt = () => {
         tile.style.setProperty('--rx', '0deg');
         tile.style.setProperty('--ry', '0deg');
-    });
+    };
+
+    tile.addEventListener('mousemove', e => tilt(e.clientX, e.clientY));
+    tile.addEventListener('mouseleave', untilt);
+
+    // On phones the tile leans toward your finger while you press it
+    tile.addEventListener('touchstart', e => tilt(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    tile.addEventListener('touchmove', e => tilt(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    tile.addEventListener('touchend', untilt);
+    tile.addEventListener('touchcancel', untilt);
 
     tile.addEventListener('click', () => {
         document.querySelectorAll('.tile.on').forEach(t => t !== tile && t.classList.remove('on'));
@@ -157,7 +164,7 @@ function splitText(root) {
     return groups;
 }
 
-if (fineMouse && !reduceMotion) {
+if (!reduceMotion) {
     const groups = splitText(document.body);
     const header = document.querySelector('.topbar');
     let points = [];      // sorted by y so we only look at letters near the cursor
@@ -210,13 +217,20 @@ if (fineMouse && !reduceMotion) {
         return lo;
     };
 
+    // A fingertip hides what's under it, so touch gets a wider, stronger push
+    // and letters also lift up out from under the finger.
+    let touching = false;
+
     const affect = (p, mx, my, next) => {
         const dx = p.x - mx;
-        const reach = 1 - Math.abs(dx) / p.radius;
-        const sameLine = 1 - Math.abs(p.y - my) / (p.h * 1.4);
+        const radius = touching ? p.radius * 1.7 : p.radius;
+        const reach = 1 - Math.abs(dx) / radius;
+        const sameLine = 1 - Math.abs(p.y - my) / (p.h * (touching ? 2.6 : 1.4));
         if (reach <= 0 || sameLine <= 0) return;
         const w = reach * reach * sameLine;
-        p.el.style.transform = `translateX(${Math.sign(dx) * p.push * w}px)`;
+        const push = touching ? p.push * 1.6 : p.push;
+        const lift = touching ? -p.h * 0.45 * w : 0;
+        p.el.style.transform = `translate(${Math.sign(dx) * push * w}px, ${lift}px)`;
         p.el.style.color = w > 0.35 ? 'var(--accent)' : '';
         next.add(p.el);
     };
@@ -249,6 +263,8 @@ if (fineMouse && !reduceMotion) {
     };
 
     window.addEventListener('mousemove', e => {
+        // phones fire a fake mousemove after a tap; ignore it while a finger is down
+        if (touching) return;
         mouse = { x: e.clientX, y: e.clientY };
         queue();
     }, { passive: true });
@@ -257,6 +273,30 @@ if (fineMouse && !reduceMotion) {
         mouse = null;
         queue();
     });
+
+    // Touch: letters part around your finger as you tap or drag, and settle
+    // back shortly after you let go. Listeners are passive so scrolling is untouched.
+    let releaseTimer;
+    const onTouch = e => {
+        const t = e.touches[0];
+        if (!t) return;
+        clearTimeout(releaseTimer);
+        touching = true;
+        mouse = { x: t.clientX, y: t.clientY };
+        queue();
+    };
+    window.addEventListener('touchstart', onTouch, { passive: true });
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    const release = () => {
+        clearTimeout(releaseTimer);
+        releaseTimer = setTimeout(() => {
+            mouse = null;
+            touching = false;
+            queue();
+        }, 450);
+    };
+    window.addEventListener('touchend', release, { passive: true });
+    window.addEventListener('touchcancel', release, { passive: true });
 
     // Re-measure whenever the layout can shift: resize, fonts and images loading
     let measureTimer;
