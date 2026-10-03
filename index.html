@@ -17,7 +17,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=8">
 </head>
 
 <body>
@@ -39,6 +39,12 @@
         </button>
     </header>
 
+    <aside class="social-rail" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" rel="noopener" class="social-btn magnetic" style="--brand:#0a66c2" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin-in"></i><span class="social-tip" aria-hidden="true">LinkedIn</span></a>
+        <a href="https://github.com/Thrushith" target="_blank" rel="noopener" class="social-btn magnetic" style="--brand:#f0f6fc;--brand-ink:#0e0d0b" aria-label="GitHub profile"><i class="fa-brands fa-github"></i><span class="social-tip" aria-hidden="true">GitHub</span></a>
+        <span class="rail-line" aria-hidden="true"></span>
+    </aside>
+
     <main>
         <!-- Hero -->
         <section class="hero" id="top">
@@ -59,6 +65,10 @@
                 <div class="hero-actions">
                     <a href="#projects" class="btn btn-solid">See my work <i class="fa-solid fa-arrow-down"></i></a>
                     <a href="#contact" class="btn btn-ghost">Say hello</a>
+                    <div class="hero-social">
+                        <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" rel="noopener" class="social-btn magnetic" style="--brand:#0a66c2" aria-label="LinkedIn profile"><i class="fa-brands fa-linkedin-in"></i><span class="social-tip" aria-hidden="true">LinkedIn</span></a>
+                        <a href="https://github.com/Thrushith" target="_blank" rel="noopener" class="social-btn magnetic" style="--brand:#f0f6fc;--brand-ink:#0e0d0b" aria-label="GitHub profile"><i class="fa-brands fa-github"></i><span class="social-tip" aria-hidden="true">GitHub</span></a>
+                    </div>
                 </div>
             </div>
 
@@ -539,13 +549,26 @@
                     <p class="contact-big">Building robots, vision models, or something that has to ship?
                         <em>Let's talk.</em></p>
                     <a href="mailto:thrushithy@gmail.com" class="mail">thrushithy@gmail.com</a>
-                    <ul class="contact-links">
-                        <li><a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank"
-                                rel="noopener"><i class="fa-brands fa-linkedin-in"></i> linkedin.com/in/thrushithyelamanchili</a>
-                        </li>
-                        <li><a href="https://github.com/Thrushith" target="_blank" rel="noopener"><i
-                                    class="fa-brands fa-github"></i> github.com/Thrushith</a></li>
-                    </ul>
+                    <div class="social-cards">
+                        <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank" rel="noopener" class="social-card"
+                            style="--brand:#0a66c2" aria-label="Connect on LinkedIn">
+                            <span class="sc-logo"><i class="fa-brands fa-linkedin-in"></i></span>
+                            <span class="sc-body">
+                                <span class="sc-name">LinkedIn</span>
+                                <span class="sc-handle">in/thrushithyelamanchili</span>
+                            </span>
+                            <span class="sc-cta">Connect <i class="fa-solid fa-arrow-up-right"></i></span>
+                        </a>
+                        <a href="https://github.com/Thrushith" target="_blank" rel="noopener" class="social-card"
+                            style="--brand:#f0f6fc;--brand-ink:#0e0d0b" aria-label="Follow on GitHub">
+                            <span class="sc-logo"><i class="fa-brands fa-github"></i></span>
+                            <span class="sc-body">
+                                <span class="sc-name">GitHub</span>
+                                <span class="sc-handle" id="ghStats">@Thrushith</span>
+                            </span>
+                            <span class="sc-cta">Follow <i class="fa-solid fa-arrow-up-right"></i></span>
+                        </a>
+                    </div>
                 </div>
 
                 <form action="https://formsubmit.co/thrushithy@gmail.com" method="POST" class="terminal" id="contactForm">
@@ -595,7 +618,7 @@
         <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script/script.js?v=6"></script>
+    <script src="script/script.js?v=9"></script>
 </body>
 
 </html>

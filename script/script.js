@@ -1,3 +1,6 @@
+// Respect people who've asked their system for less motion
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Mobile menu
 const nav = document.getElementById('nav');
 const navToggle = document.getElementById('navToggle');
@@ -93,10 +96,71 @@ document.getElementById('sendAnother').addEventListener('click', () => {
     form.querySelector('input[name="email"]').focus();
 });
 
+// Social buttons drift toward the cursor a little ("magnetic")
+if (!reduceMotion) {
+    document.querySelectorAll('.magnetic').forEach(el => {
+        el.addEventListener('mousemove', e => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - (r.left + r.width / 2);
+            const y = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = '';
+        });
+    });
+}
+
+// Contact cards tilt toward the cursor (or finger) with a brand-colored glow
+document.querySelectorAll('.social-card').forEach(card => {
+    const tilt = (cx, cy) => {
+        const r = card.getBoundingClientRect();
+        const x = Math.min(Math.max((cx - r.left) / r.width, 0), 1);
+        const y = Math.min(Math.max((cy - r.top) / r.height, 0), 1);
+        card.style.setProperty('--mx', x * 100 + '%');
+        card.style.setProperty('--my', y * 100 + '%');
+        if (!reduceMotion) {
+            card.style.setProperty('--ry', (x - 0.5) * 10 + 'deg');
+            card.style.setProperty('--rx', (0.5 - y) * 14 + 'deg');
+        }
+    };
+    const untilt = () => {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+    };
+    card.addEventListener('mousemove', e => tilt(e.clientX, e.clientY));
+    card.addEventListener('mouseleave', untilt);
+    card.addEventListener('touchmove', e => tilt(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+    card.addEventListener('touchend', untilt);
+});
+
+// Side rail shows up after the hero and steps aside once the contact cards are on screen
+const rail = document.querySelector('.social-rail');
+const heroSection = document.querySelector('.hero');
+const contactCards = document.querySelector('.social-cards');
+const updateRail = () => {
+    const pastHero = heroSection.getBoundingClientRect().bottom < window.innerHeight * 0.35;
+    const cardsInView = contactCards.getBoundingClientRect().top < window.innerHeight;
+    rail.classList.toggle('show', pastHero && !cardsInView);
+};
+window.addEventListener('scroll', updateRail, { passive: true });
+window.addEventListener('resize', updateRail);
+updateRail();
+
+// Live GitHub numbers on the card; if the API is unavailable the handle just stays as is
+fetch('https://api.github.com/users/Thrushith')
+    .then(res => (res.ok ? res.json() : Promise.reject()))
+    .then(user => {
+        const repos = user.public_repos;
+        const followers = user.followers;
+        document.getElementById('ghStats').textContent =
+            `@Thrushith · ${repos} repo${repos === 1 ? '' : 's'} · ${followers} follower${followers === 1 ? '' : 's'}`;
+    })
+    .catch(() => {});
+
 // Keep the footer year current
 document.getElementById('year').textContent = new Date().getFullYear();
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Toolkit tiles: tilt toward the cursor and print a note in the readout
 const readout = document.getElementById('readout');

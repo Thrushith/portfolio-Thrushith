@@ -1289,6 +1289,260 @@ main {
     margin-top: .5rem;
 }
 
+/* ---------- Social links ---------- */
+
+.social-btn {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font-size: 1.15rem;
+    transition: transform .35s var(--ease), background .25s, color .25s, border-color .25s, box-shadow .3s;
+}
+
+.social-btn > i {
+    transition: transform .4s var(--ease);
+}
+
+.social-btn:hover,
+.social-btn:focus-visible {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--brand-ink, #fff);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--brand) 18%, transparent);
+    outline: none;
+}
+
+.social-btn:hover > i {
+    transform: scale(1.12) rotate(-8deg);
+}
+
+/* little label that pops up above the button */
+.social-tip {
+    position: absolute;
+    bottom: calc(100% + .6rem);
+    left: 50%;
+    padding: .25rem .55rem;
+    border-radius: 4px;
+    background: var(--text);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: .7rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, 6px);
+    transition: opacity .2s, transform .25s var(--ease);
+}
+
+.social-btn:hover .social-tip,
+.social-btn:focus-visible .social-tip {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.hero-social {
+    display: flex;
+    gap: .6rem;
+    margin-left: .25rem;
+}
+
+/* floating rail on the left edge, desktop only */
+.social-rail {
+    position: fixed;
+    left: clamp(.75rem, 2vw, 1.75rem);
+    bottom: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: opacity .4s, transform .5s var(--ease);
+}
+
+.social-rail.show {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+}
+
+.social-rail .social-btn {
+    background: var(--bg);
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 1rem;
+}
+
+.social-rail .social-btn:hover,
+.social-rail .social-btn:focus-visible {
+    background: var(--brand);
+}
+
+/* rail tooltips sit to the right instead of above */
+.social-rail .social-tip {
+    bottom: auto;
+    top: 50%;
+    left: calc(100% + .6rem);
+    transform: translate(-6px, -50%);
+}
+
+.social-rail .social-btn:hover .social-tip,
+.social-rail .social-btn:focus-visible .social-tip {
+    transform: translate(0, -50%);
+}
+
+.rail-line {
+    width: 1px;
+    height: 5.5rem;
+    margin-top: .25rem;
+    background: linear-gradient(var(--line-strong), transparent);
+}
+
+/* contact cards */
+.social-cards {
+    display: grid;
+    gap: .75rem;
+    max-width: 28rem;
+    perspective: 800px;
+}
+
+.social-card {
+    --rx: 0deg;
+    --ry: 0deg;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg-raised);
+    overflow: hidden;
+    transform: rotateX(var(--rx)) rotateY(var(--ry));
+    transition: transform .35s var(--ease), border-color .25s;
+}
+
+.social-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--brand) 20%, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.social-card:hover,
+.social-card:focus-visible {
+    border-color: color-mix(in srgb, var(--brand) 60%, var(--line));
+    outline: none;
+}
+
+.social-card:hover::before,
+.social-card:focus-visible::before {
+    opacity: 1;
+}
+
+.sc-logo {
+    position: relative;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--bg-sunk);
+    border: 1px solid var(--line-strong);
+    font-size: 1.35rem;
+    transition: background .3s, color .3s, border-color .3s;
+}
+
+.sc-logo i {
+    transition: transform .6s var(--ease);
+}
+
+.social-card:hover .sc-logo,
+.social-card:focus-visible .sc-logo {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--brand-ink, #fff);
+}
+
+.social-card:hover .sc-logo i {
+    transform: rotateY(360deg);
+}
+
+.sc-body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.sc-name {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    line-height: 1.1;
+}
+
+.sc-handle {
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--text-faint);
+    overflow-wrap: anywhere;
+}
+
+.sc-cta {
+    position: relative;
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: .76rem;
+    color: var(--text-dim);
+    transition: color .2s;
+}
+
+.sc-cta i {
+    font-size: .8em;
+    transition: transform .3s var(--ease);
+}
+
+.social-card:hover .sc-cta {
+    color: var(--text);
+}
+
+.social-card:hover .sc-cta i {
+    transform: translate(2px, -2px);
+}
+
+@media (max-width: 960px) {
+    .social-rail {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-social {
+        margin-left: 0;
+    }
+}
+
+@media (pointer: coarse) {
+    .social-btn:active {
+        transform: scale(.92);
+    }
+
+    .social-card:active {
+        transform: scale(.98);
+    }
+}
+
 /* ---------- Footer ---------- */
 
 .footer {
