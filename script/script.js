@@ -281,7 +281,8 @@ if (badge && !reduceMotion) {
         // text ring: idle spin, revved up by mouse movement nearby
         spinSpeed += (24 - spinSpeed) * Math.min(dt * 2.2, 1);
         angle = (angle + spinSpeed * dt) % 360;
-        ring.setAttribute('transform', `rotate(${angle} 60 60)`);
+        // pivot comes from the CSS transform-origin (the badge centre), so just the angle here
+        ring.style.transform = `rotate(${angle}deg)`;
 
         requestAnimationFrame(frame);
     };
