@@ -158,70 +158,171 @@ fetch('https://api.github.com/users/Thrushith')
     })
     .catch(() => {});
 
-// Scroll badge: spins faster the more the mouse moves near it, and leans toward the cursor
+// Scroll badge as a jelly bubble (mouse only):
+//  - drifts toward the cursor on a spring, so it overshoots and wobbles
+//  - the core bulges out toward a nearby pointer, and dents in where the pointer presses
+//  - stretches along the direction it's moving, squashes back when it stops
+//  - the text ring spins faster the more the mouse moves nearby
 const badge = document.querySelector('.scroll-badge');
 if (badge && !reduceMotion) {
     document.body.classList.add('js-badge');
     const ring = badge.querySelector('.badge-ring');
     const mag = badge.querySelector('.badge-mag');
-    const hero = document.querySelector('.hero');
-    const BASE = 24;          // idle spin, degrees per second
-    let angle = 0;
-    let speed = BASE;
+    const core = badge.querySelector('.badge-core');
+    const fineMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    const RANGE = 340;        // px: how far away the bubble starts to notice the cursor
+    const MAX_PULL = 60;      // px: furthest it will drift
+    const R = 25;             // core radius in SVG units
+    const POINTS = 36;        // resolution of the blob outline
+
+    let angle = 0, spinSpeed = 24;
+    let pos = { x: 0, y: 0 }, vel = { x: 0, y: 0 };
+    let bulge = 0, dent = 0, dentAt = 0, reachAt = 0;
+    let mouse = null, lastMouse = null;
     let last = performance.now();
-    let lastMouse = null;
+    let running = false;
 
-    let spinning = false;
-    const spin = now => {
-        // stop the loop while the badge is faded out; it restarts when you scroll back up
-        if (window.scrollY > 60) {
-            spinning = false;
-            return;
-        }
-        const dt = Math.min((now - last) / 1000, 0.05);
+    const frame = now => {
+        if (window.scrollY > 60) { running = false; return; }
+        const dt = Math.min((now - last) / 1000, 1 / 30);
         last = now;
-        speed += (BASE - speed) * Math.min(dt * 2.2, 1);   // ease back toward idle
-        angle = (angle + speed * dt) % 360;
-        ring.setAttribute('transform', `rotate(${angle} 60 60)`);
-        requestAnimationFrame(spin);
-    };
-    const startSpin = () => {
-        if (spinning || window.scrollY > 60) return;
-        spinning = true;
-        last = performance.now();
-        requestAnimationFrame(spin);
-    };
-    startSpin();
-    window.addEventListener('scroll', startSpin, { passive: true });
+        const t = now / 1000;
 
-    hero.addEventListener('mousemove', e => {
+        // where is the cursor relative to the badge's resting centre?
         const r = badge.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        const dist = Math.hypot(dx, dy);
-        const near = Math.max(0, 1 - dist / 420);
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const toSvg = 120 / r.width;
+        let target = { x: 0, y: 0 };
+        let near = 0;
+        let local = null;
 
-        // lean toward the cursor, more when it's close
-        const pull = Math.min(26, near * 34);
-        mag.style.setProperty('--tx', (dx / (dist || 1)) * pull + 'px');
-        mag.style.setProperty('--ty', (dy / (dist || 1)) * pull + 'px');
-
-        // mouse speed nearby revs up the spin
-        if (lastMouse) {
-            const moved = Math.hypot(e.clientX - lastMouse.x, e.clientY - lastMouse.y);
-            speed = Math.min(speed + moved * near * 6, 520);
+        if (mouse) {
+            const dx = mouse.x - cx, dy = mouse.y - cy;
+            const dist = Math.hypot(dx, dy) || 1;
+            near = Math.max(0, 1 - dist / RANGE);
+            const pull = Math.min(MAX_PULL, Math.pow(near, 1.4) * 0.55 * dist);
+            target = { x: dx / dist * pull, y: dy / dist * pull };
+            // cursor in the bubble's own (moving) SVG coordinates
+            local = { x: (mouse.x - cx - pos.x) * toSvg, y: (mouse.y - cy - pos.y) * toSvg };
         }
-        lastMouse = { x: e.clientX, y: e.clientY };
+
+        // spring toward the target; low damping keeps a bit of jelly
+        const K = 140, D = 11;
+        vel.x += ((target.x - pos.x) * K - vel.x * D) * dt;
+        vel.y += ((target.y - pos.y) * K - vel.y * D) * dt;
+        pos.x += vel.x * dt;
+        pos.y += vel.y * dt;
+
+        // squash and stretch along the direction of travel (or toward the cursor when slow)
+        const speed = Math.hypot(vel.x, vel.y);
+        let ux = 1, uy = 0, s = 0;
+        if (speed > 20) {
+            ux = vel.x / speed; uy = vel.y / speed;
+            s = Math.min(0.22, speed / 1600);
+        } else if (mouse) {
+            const dx = mouse.x - cx - pos.x, dy = mouse.y - cy - pos.y;
+            const d = Math.hypot(dx, dy) || 1;
+            ux = dx / d; uy = dy / d;
+            s = near * 0.08;
+        }
+        const k1 = s, k2 = -0.55 * s;
+        const m11 = 1 + k1 * ux * ux + k2 * uy * uy;
+        const m22 = 1 + k1 * uy * uy + k2 * ux * ux;
+        const m12 = (k1 - k2) * ux * uy;
+        mag.style.transform = `matrix(${m11}, ${m12}, ${m12}, ${m22}, ${pos.x}, ${pos.y})`;
+
+        // the core: reach toward a nearby pointer, dent where it presses in
+        let bulgeTarget = 0, dentTarget = 0;
+        if (local) {
+            const d = Math.hypot(local.x, local.y);
+            const phi = Math.atan2(local.y, local.x);
+            if (d > R) {
+                bulgeTarget = Math.max(0, 1 - (d - R) / 70) * 9;
+                reachAt = phi;
+            } else {
+                dentTarget = Math.min(14, (R - d) + 5);
+                dentAt = phi;
+            }
+        }
+        // the bubble can drift away from its link box, so track "hover" against where it actually is
+        const hot = !!local && Math.hypot(local.x, local.y) < 50;
+        badge.classList.toggle('is-hot', hot);
+        document.documentElement.classList.toggle('badge-hot', hot);
+
+        bulge += (bulgeTarget - bulge) * Math.min(dt * 9, 1);
+        dent += (dentTarget - dent) * Math.min(dt * 12, 1);
+
+        const wobble = 0.5 + Math.min(speed / 250, 2.2);
+        const pts = [];
+        for (let i = 0; i < POINTS; i++) {
+            const th = (i / POINTS) * Math.PI * 2;
+            const toward = Math.max(0, Math.cos(th - reachAt));
+            const press = Math.exp(-Math.pow(Math.atan2(Math.sin(th - dentAt), Math.cos(th - dentAt)) / 0.55, 2));
+            const rr = R
+                + bulge * Math.pow(toward, 4)
+                - dent * press
+                + Math.sin(th * 3 + t * 3.1) * wobble * 0.5
+                + Math.sin(th * 5 - t * 2.3) * wobble * 0.25;
+            pts.push([60 + Math.cos(th) * rr, 60 + Math.sin(th) * rr]);
+        }
+        // smooth closed curve through the points (Catmull-Rom as cubic Beziers)
+        let path = `M${pts[0][0].toFixed(2)} ${pts[0][1].toFixed(2)}`;
+        for (let i = 0; i < POINTS; i++) {
+            const p0 = pts[(i - 1 + POINTS) % POINTS], p1 = pts[i];
+            const p2 = pts[(i + 1) % POINTS], p3 = pts[(i + 2) % POINTS];
+            path += `C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(2)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(2)} `
+                + `${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(2)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(2)} `
+                + `${p2[0].toFixed(2)} ${p2[1].toFixed(2)}`;
+        }
+        core.setAttribute('d', path + 'Z');
+
+        // text ring: idle spin, revved up by mouse movement nearby
+        spinSpeed += (24 - spinSpeed) * Math.min(dt * 2.2, 1);
+        angle = (angle + spinSpeed * dt) % 360;
+        ring.setAttribute('transform', `rotate(${angle} 60 60)`);
+
+        requestAnimationFrame(frame);
+    };
+
+    const start = () => {
+        if (running || window.scrollY > 60) return;
+        running = true;
+        last = performance.now();
+        requestAnimationFrame(frame);
+    };
+
+    if (fineMouse) {
+        window.addEventListener('mousemove', e => {
+            if (lastMouse) {
+                const r = badge.getBoundingClientRect();
+                const near = Math.max(0, 1 - Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)) / RANGE);
+                const moved = Math.hypot(e.clientX - lastMouse.x, e.clientY - lastMouse.y);
+                spinSpeed = Math.min(spinSpeed + moved * near * 6, 520);
+            }
+            mouse = lastMouse = { x: e.clientX, y: e.clientY };
+        }, { passive: true });
+        document.addEventListener('mouseleave', () => { mouse = lastMouse = null; });
+    }
+
+    // a click on the bubble counts even if it has drifted outside the link's own box
+    window.addEventListener('click', e => {
+        if (badge.classList.contains('is-hot') && !badge.contains(e.target)) {
+            spinSpeed = 720;
+            vel.y += 260;
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        }
     });
 
-    hero.addEventListener('mouseleave', () => {
-        mag.style.setProperty('--tx', '0px');
-        mag.style.setProperty('--ty', '0px');
-        lastMouse = null;
+    // clicking gives it a squish and a fast spin before jumping down
+    badge.addEventListener('pointerdown', () => {
+        spinSpeed = 720;
+        vel.y += 260;
     });
 
-    // a quick extra spin when it's clicked or tapped
-    badge.addEventListener('pointerdown', () => { speed = 720; });
+    start();
+    window.addEventListener('scroll', start, { passive: true });
 }
 
 // Hide the scroll hints once someone has started scrolling
