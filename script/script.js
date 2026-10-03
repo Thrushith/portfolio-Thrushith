@@ -158,6 +158,11 @@ fetch('https://api.github.com/users/Thrushith')
     })
     .catch(() => {});
 
+// Hide the scroll hints once someone has started scrolling
+const markScrolled = () => document.body.classList.toggle('has-scrolled', window.scrollY > 60);
+window.addEventListener('scroll', markScrolled, { passive: true });
+markScrolled();
+
 // Keep the footer year current
 document.getElementById('year').textContent = new Date().getFullYear();
 

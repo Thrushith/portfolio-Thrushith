@@ -17,7 +17,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="style.css?v=8">
+    <link rel="stylesheet" href="style.css?v=10">
 </head>
 
 <body>
@@ -45,16 +45,39 @@
         <span class="rail-line" aria-hidden="true"></span>
     </aside>
 
+    <a href="#about" class="scroll-cue" aria-label="Scroll down to About">
+        <span class="cue-track" aria-hidden="true"><span class="cue-dot"></span></span>
+        <span class="cue-text" aria-hidden="true">scroll</span>
+    </a>
+
     <main>
         <!-- Hero -->
         <section class="hero" id="top">
             <p class="prompt"><span class="caret">&gt;</span> ai <i>/</i> machine learning <i>/</i> robot learning <i>/</i>
                 llms<span class="cursor">_</span></p>
 
-            <h1 class="hero-name">
-                <span class="line">Thrushith</span>
-                <span class="line italic">Yelamanchili</span>
-            </h1>
+            <div class="hero-title">
+                <h1 class="hero-name">
+                    <span class="line">Thrushith</span>
+                    <span class="line italic">Yelamanchili</span>
+                </h1>
+
+                <!-- spinning "scroll down" badge in the empty space beside the name (tablet and up) -->
+                <a href="#about" class="scroll-badge" aria-label="Scroll down to About">
+                    <svg viewBox="0 0 120 120" aria-hidden="true">
+                        <defs>
+                            <path id="badgeRing" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
+                        </defs>
+                        <g class="badge-ring">
+                            <text>
+                                <textPath href="#badgeRing" textLength="274" lengthAdjust="spacing">scroll down · scroll down · </textPath>
+                            </text>
+                        </g>
+                        <circle cx="60" cy="60" r="25" class="badge-core" />
+                        <path d="M60 49 V70 M52 63 L60 71 L68 63" class="badge-arrow" />
+                    </svg>
+                </a>
+            </div>
 
             <div class="hero-foot">
                 <p class="hero-lede">
@@ -75,11 +98,7 @@
             <ul class="hero-meta">
                 <li><span>Research</span>VLA models for robot manipulation at UMass Dartmouth</li>
                 <li><span>Degree</span>M.S. Data Science, GPA 3.94</li>
-                <li><span>Status</span>U.S. work authorized.
-                    <a href="https://www.linkedin.com/in/thrushithyelamanchili/" target="_blank"
-                        rel="noopener">LinkedIn</a>,
-                    <a href="https://github.com/Thrushith" target="_blank" rel="noopener">GitHub</a>
-                </li>
+                <li><span>Status</span>U.S. work authorized</li>
             </ul>
         </section>
 
@@ -618,7 +637,7 @@
         <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script/script.js?v=9"></script>
+    <script src="script/script.js?v=10"></script>
 </body>
 
 </html>
