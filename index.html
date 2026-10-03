@@ -17,7 +17,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="style.css?v=13">
+    <link rel="stylesheet" href="style.css?v=14">
 </head>
 
 <body>
@@ -68,7 +68,7 @@
                     <span class="badge-mag">
                         <svg class="badge-svg" viewBox="0 0 120 120" aria-hidden="true">
                             <defs>
-                                <path id="badgeRing" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
+                                <path id="badgeRing" d="M-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
                                 <clipPath id="badgeCoreClip">
                                     <circle cx="60" cy="60" r="24" />
                                 </clipPath>
@@ -76,10 +76,12 @@
                             <!-- sonar ripples -->
                             <circle cx="60" cy="60" r="25" class="badge-ripple" />
                             <circle cx="60" cy="60" r="25" class="badge-ripple r2" />
-                            <g class="badge-ring">
-                                <text>
-                                    <textPath href="#badgeRing" textLength="274" lengthAdjust="spacing">scroll down · scroll down · </textPath>
-                                </text>
+                            <g transform="translate(60 60)">
+                                <g class="badge-ring">
+                                    <text>
+                                        <textPath href="#badgeRing" textLength="274" lengthAdjust="spacing">scroll down · scroll down · </textPath>
+                                    </text>
+                                </g>
                             </g>
                             <path class="badge-core" d="M85 60 A25 25 0 1 1 35 60 A25 25 0 1 1 85 60Z" />
                             <!-- arrow falls out the bottom and drops back in from the top -->
@@ -649,7 +651,7 @@
         <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script/script.js?v=13"></script>
+    <script src="script/script.js?v=14"></script>
 </body>
 
 </html>

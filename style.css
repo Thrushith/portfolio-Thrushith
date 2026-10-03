@@ -353,9 +353,8 @@ main {
 
 /* spun from JS so it can speed up when the mouse moves nearby;
    this CSS spin is only the fallback if the script doesn't run */
+/* sits inside a group already moved to the badge centre, so it spins around its own origin */
 .badge-ring {
-    transform-box: view-box;
-    transform-origin: 60px 60px;
     animation: spin 14s linear infinite;
 }
 

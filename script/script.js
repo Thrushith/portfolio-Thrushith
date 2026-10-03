@@ -183,6 +183,19 @@ if (badge && !reduceMotion) {
     let last = performance.now();
     let running = false;
 
+    // The link box itself never moves (only the inner .badge-mag does), so its centre only
+    // changes on scroll or resize. Caching it avoids forcing a layout on every frame.
+    let rest = { cx: 0, cy: 0, w: 1 };
+    const measureRest = () => {
+        const r = badge.getBoundingClientRect();
+        rest = { cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width || 1 };
+    };
+    measureRest();
+    window.addEventListener('resize', measureRest);
+    window.addEventListener('scroll', measureRest, { passive: true });
+    // the entrance animation scales the badge for its first second or so
+    setTimeout(measureRest, 2200);
+
     const frame = now => {
         if (window.scrollY > 60) { running = false; return; }
         const dt = Math.min((now - last) / 1000, 1 / 30);
@@ -190,10 +203,9 @@ if (badge && !reduceMotion) {
         const t = now / 1000;
 
         // where is the cursor relative to the badge's resting centre?
-        const r = badge.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        const toSvg = 120 / r.width;
+        const cx = rest.cx;
+        const cy = rest.cy;
+        const toSvg = 120 / rest.w;
         let target = { x: 0, y: 0 };
         let near = 0;
         let local = null;
@@ -209,7 +221,7 @@ if (badge && !reduceMotion) {
         }
 
         // spring toward the target; low damping keeps a bit of jelly
-        const K = 140, D = 11;
+        const K = 300, D = 19;
         vel.x += ((target.x - pos.x) * K - vel.x * D) * dt;
         vel.y += ((target.y - pos.y) * K - vel.y * D) * dt;
         pos.x += vel.x * dt;
@@ -251,8 +263,8 @@ if (badge && !reduceMotion) {
         badge.classList.toggle('is-hot', hot);
         document.documentElement.classList.toggle('badge-hot', hot);
 
-        bulge += (bulgeTarget - bulge) * Math.min(dt * 9, 1);
-        dent += (dentTarget - dent) * Math.min(dt * 12, 1);
+        bulge += (bulgeTarget - bulge) * Math.min(dt * 22, 1);
+        dent += (dentTarget - dent) * Math.min(dt * 30, 1);
 
         const wobble = 0.5 + Math.min(speed / 250, 2.2);
         const pts = [];
@@ -281,8 +293,7 @@ if (badge && !reduceMotion) {
         // text ring: idle spin, revved up by mouse movement nearby
         spinSpeed += (24 - spinSpeed) * Math.min(dt * 2.2, 1);
         angle = (angle + spinSpeed * dt) % 360;
-        // pivot comes from the CSS transform-origin (the badge centre), so just the angle here
-        ring.style.transform = `rotate(${angle}deg)`;
+        ring.setAttribute('transform', `rotate(${angle})`);
 
         requestAnimationFrame(frame);
     };
@@ -297,8 +308,7 @@ if (badge && !reduceMotion) {
     if (fineMouse) {
         window.addEventListener('mousemove', e => {
             if (lastMouse) {
-                const r = badge.getBoundingClientRect();
-                const near = Math.max(0, 1 - Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2)) / RANGE);
+                const near = Math.max(0, 1 - Math.hypot(e.clientX - rest.cx, e.clientY - rest.cy) / RANGE);
                 const moved = Math.hypot(e.clientX - lastMouse.x, e.clientY - lastMouse.y);
                 spinSpeed = Math.min(spinSpeed + moved * near * 6, 520);
             }
