@@ -158,6 +158,72 @@ fetch('https://api.github.com/users/Thrushith')
     })
     .catch(() => {});
 
+// Scroll badge: spins faster the more the mouse moves near it, and leans toward the cursor
+const badge = document.querySelector('.scroll-badge');
+if (badge && !reduceMotion) {
+    document.body.classList.add('js-badge');
+    const ring = badge.querySelector('.badge-ring');
+    const mag = badge.querySelector('.badge-mag');
+    const hero = document.querySelector('.hero');
+    const BASE = 24;          // idle spin, degrees per second
+    let angle = 0;
+    let speed = BASE;
+    let last = performance.now();
+    let lastMouse = null;
+
+    let spinning = false;
+    const spin = now => {
+        // stop the loop while the badge is faded out; it restarts when you scroll back up
+        if (window.scrollY > 60) {
+            spinning = false;
+            return;
+        }
+        const dt = Math.min((now - last) / 1000, 0.05);
+        last = now;
+        speed += (BASE - speed) * Math.min(dt * 2.2, 1);   // ease back toward idle
+        angle = (angle + speed * dt) % 360;
+        ring.setAttribute('transform', `rotate(${angle} 60 60)`);
+        requestAnimationFrame(spin);
+    };
+    const startSpin = () => {
+        if (spinning || window.scrollY > 60) return;
+        spinning = true;
+        last = performance.now();
+        requestAnimationFrame(spin);
+    };
+    startSpin();
+    window.addEventListener('scroll', startSpin, { passive: true });
+
+    hero.addEventListener('mousemove', e => {
+        const r = badge.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        const dist = Math.hypot(dx, dy);
+        const near = Math.max(0, 1 - dist / 420);
+
+        // lean toward the cursor, more when it's close
+        const pull = Math.min(26, near * 34);
+        mag.style.setProperty('--tx', (dx / (dist || 1)) * pull + 'px');
+        mag.style.setProperty('--ty', (dy / (dist || 1)) * pull + 'px');
+
+        // mouse speed nearby revs up the spin
+        if (lastMouse) {
+            const moved = Math.hypot(e.clientX - lastMouse.x, e.clientY - lastMouse.y);
+            speed = Math.min(speed + moved * near * 6, 520);
+        }
+        lastMouse = { x: e.clientX, y: e.clientY };
+    });
+
+    hero.addEventListener('mouseleave', () => {
+        mag.style.setProperty('--tx', '0px');
+        mag.style.setProperty('--ty', '0px');
+        lastMouse = null;
+    });
+
+    // a quick extra spin when it's clicked or tapped
+    badge.addEventListener('pointerdown', () => { speed = 720; });
+}
+
 // Hide the scroll hints once someone has started scrolling
 const markScrolled = () => document.body.classList.toggle('has-scrolled', window.scrollY > 60);
 window.addEventListener('scroll', markScrolled, { passive: true });
